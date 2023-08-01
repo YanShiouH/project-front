@@ -11,13 +11,19 @@
       <pre>{{ description }}</pre>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" prepend-icon="mdi-cart">加入購物車</v-btn>
+      <v-btn color="primary" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script setup>
 import { defineProps } from 'vue'
+import { useUserStore } from '@/store/user'
+import { apiAuth } from '@/plugins/axios'
+import { useSnackbar } from 'vuetify-use-dialog'
+
+const createSnackbar = useSnackbar()
+const user = useUserStore()
 
 const props = defineProps({
   _id: {
@@ -49,4 +55,24 @@ const props = defineProps({
     default: () => true
   }
 })
+
+const addCart = async () => {
+  try {
+    const { data } = await apiAuth.post('/users/cart', {
+      product: props._id,
+      quantity: 1
+    })
+    user.cart = data.result
+  } catch (error) {
+    createSnackbar({
+      text: error.response.data.message,
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'red',
+        location: 'bottom'
+      }
+    })
+  }
+}
 </script>

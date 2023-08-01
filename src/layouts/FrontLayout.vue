@@ -6,6 +6,9 @@
           <template #prepend>
             <v-icon :icon="navItem.icon"></v-icon>
           </template>
+          <template #append>
+            <v-badge color="success" :content="cart.toString()" v-if="navItem.to === '/cart'"></v-badge>
+          </template>
           <v-list-item-title>{{ navItem.text }}</v-list-item-title></v-list-item></template>
       <v-list-item v-if="isLogin" @click="logout">
         <template #prepend>
@@ -25,7 +28,8 @@
       <template v-if="!isMobile">
         <template v-for="navItem in navItems" :key="navItem.to">
           <v-btn variant="text" :prepend-icon="navItem.icon" :to="navItem.to" v-if="navItem.show">{{ navItem.text
-          }}<v-badge color="success" content="10" floating v-if="navItem.to === '/cart'"></v-badge></v-btn>
+          }}<v-badge color="success" :content="cart.toString()" floating
+              v-if="navItem.to === '/cart'"></v-badge></v-btn>
         </template></template>
       <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">登出</v-btn>
     </v-container>
@@ -47,7 +51,7 @@ import { useSnackbar } from 'vuetify-use-dialog'
 const createSnackbar = useSnackbar()
 
 const user = useUserStore()
-const { isLogin, isAdmin } = storeToRefs(user)
+const { isLogin, isAdmin, cart } = storeToRefs(user)
 
 const { mobile } = useDisplay()
 const isMobile = computed(() => mobile.value)

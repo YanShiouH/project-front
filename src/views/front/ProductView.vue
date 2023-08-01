@@ -10,6 +10,11 @@
       <v-col cols="12" md="6">
         <p>${{ product.price }}</p>
         <pre>{{ product.description }}</pre>
+        <v-form :disabled="isSubmitting" @submit.prevent="submit">
+          <v-text-field v-model.number="quantity.value.value" type="number" label="數量" min="0"
+            :error-messages="quantity.errorMessage.value"></v-text-field>
+          <v-btn type="submit" color="green">加入購物車</v-btn>
+        </v-form>
       </v-col>
     </v-row>
   </v-container>
@@ -20,13 +25,49 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { api } from '@/plugins/axios'
+import { ref, mergeProps } from 'vue'
+import { api, apiAuth } from '@/plugins/axios'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
+import * as yup from 'yup'
+import { useForm, useField } from 'vee-validate'
+import { useUserStore } from '@/store/user'
 
 const route = useRoute()
 const createSnackbar = useSnackbar()
+const user = useUserStore()
+
+const schema = yup.object({
+  quantity: yup.number().required('缺少數量').min(1, '最少為1')
+})
+const { isSubmitting, handleSubmit } = useForm({
+  validationSchema: schema,
+  initialValues: {
+    quantity: 0
+  }
+})
+const quantity = useField('quantity')
+
+const submit = handleSubmit(async (values) => {
+  try {
+    const { data } = await apiAuth.post('/users/cart', {
+      product: product.value.value_id,
+      quantity: values.quantity
+    })
+    user.cart = data.result
+  } catch (error) {
+    createSnackbar({
+      text: error.response.data.message,
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'red',
+        location: 'bottom'
+      }
+    })
+  }
+})
+
 const product = ref({
   _id: '',
   name: '',
