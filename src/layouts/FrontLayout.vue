@@ -6,22 +6,22 @@
           <template #prepend>
             <v-icon :icon="navItem.icon"></v-icon>
           </template>
-          <template #append>
+          <!-- <template #append>
             <v-badge color="success" :content="cart.toString()" v-if="navItem.to === '/cart'"></v-badge>
-          </template>
+          </template> -->
           <v-list-item-title>{{ navItem.text }}</v-list-item-title></v-list-item></template>
       <v-list-item v-if="isLogin" @click="logout">
         <template #prepend>
           <v-icon icon="mdi-logout"></v-icon>
         </template>
-        <v-list-item-title>登出</v-list-item-title>
+        <v-list-item-title>Sign Out</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
   <v-app-bar color="primary">
     <v-container class="d-flex align-center">
       <v-btn to="/" selected-class="" :active="false">
-        <v-app-bar-title>購物網</v-app-bar-title>
+        <v-app-bar-title>Taealam</v-app-bar-title>
       </v-btn>
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon v-if="isMobile" @click="drawer = true"></v-app-bar-nav-icon>
@@ -31,7 +31,7 @@
           }}<v-badge color="success" :content="cart.toString()" floating
               v-if="navItem.to === '/cart'"></v-badge></v-btn>
         </template></template>
-      <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">登出</v-btn>
+      <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">Sign Out</v-btn>
     </v-container>
   </v-app-bar>
 
@@ -60,11 +60,13 @@ const drawer = ref(false)
 
 const navItems = computed(() => {
   return [
-    { to: '/register', text: '註冊', icon: 'mdi-account-plus', show: !user.isLogin.value },
-    { to: '/login', text: '登入', icon: 'mdi-login', show: !user.isLogin.value },
-    { to: '/cart', text: '購物車', icon: 'mdi-cart', show: isLogin.value },
-    { to: '/orders', text: '訂單', icon: 'mdi-format-list-numbered', show: isLogin.value },
-    { to: '/admin', text: '管理', icon: 'mdi-cog', show: isLogin.value && isAdmin.value }
+    { to: '/courses', text: 'Courses', icon: '', show: true },
+    { to: '/culturecorner', text: 'Culture Corner', icon: '', show: true },
+    { to: '/discussionboard', text: 'Discussion Board', icon: '', show: true },
+    { to: '/aboutus', text: 'About Us', icon: '', show: true },
+    { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
+    { to: '/login', text: 'Log In', icon: 'mdi-login', show: !user.isLogin },
+    { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !user.isLogin }
   ]
 })
 

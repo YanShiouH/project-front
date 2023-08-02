@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>登入</h1>
+        <h1>Login</h1>
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
@@ -12,7 +12,7 @@
           <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="密碼" counter
             maxlength="20" type="password"></v-text-field>
           <div class="text-center">
-            <v-btn type="submit" color="green">登入</v-btn>
+            <v-btn type="submit" color="green">Log In</v-btn>
           </div>
         </v-form>
       </v-col>

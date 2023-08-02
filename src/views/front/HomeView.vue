@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>購物網</h1>
+        <h1>Taealam</h1>
       </v-col>
       <v-col cols="12" md="6" lg="3" v-for="product in products" :key="product._id">
         <ProductCard v-bind="product"></ProductCard>
