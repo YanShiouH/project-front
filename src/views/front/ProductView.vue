@@ -38,7 +38,7 @@ const createSnackbar = useSnackbar()
 const user = useUserStore()
 
 const schema = yup.object({
-  quantity: yup.number().required('缺少數量').min(1, '最少為1')
+  quantity: yup.number().typeError('缺少數量').required('缺少數量').min(1, '最少為1')
 })
 const { isSubmitting, handleSubmit } = useForm({
   validationSchema: schema,
@@ -51,7 +51,7 @@ const quantity = useField('quantity')
 const submit = handleSubmit(async (values) => {
   try {
     const { data } = await apiAuth.post('/users/cart', {
-      product: product.value.value_id,
+      product: product.value._id,
       quantity: values.quantity
     })
     user.cart = data.result

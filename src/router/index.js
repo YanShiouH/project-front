@@ -46,6 +46,26 @@ const routes = [
           login: false,
           admin: false
         }
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: () => import(/* webpackChunkName: "cart" */ '@/views/front/CartView.vue'),
+        meta: {
+          title: '購物網 | 購物車',
+          login: true,
+          admin: false
+        }
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import(/* webpackChunkName: "orders" */ '@/views/front/OrdersView.vue'),
+        meta: {
+          title: '購物網 | 訂單',
+          login: true,
+          admin: false
+        }
       }
     ]
   },
@@ -69,6 +89,16 @@ const routes = [
         component: () => import(/* webpackChunkName: "admin-products" */ '@/views/admin/ProductsView.vue'),
         meta: {
           title: '購物網 | 商品管理',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'orders',
+        name: 'AdminOrders',
+        component: () => import(/* webpackChunkName: "admin-orders" */ '@/views/admin/OrdersView.vue'),
+        meta: {
+          title: '購物網 | 訂單管理',
           login: true,
           admin: true
         }
