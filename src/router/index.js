@@ -12,7 +12,7 @@ const routes = [
         name: 'Home',
         component: () => import(/* webpackChunkName: "home" */ '@/views/front/HomeView.vue'),
         meta: {
-          title: '購物網',
+          title: 'Taealam',
           login: false,
           admin: false
         }
@@ -22,7 +22,7 @@ const routes = [
         name: 'Register',
         component: () => import(/* webpackChunkName: "register" */ '@/views/front/RegisterView.vue'),
         meta: {
-          title: '購物網 | 註冊',
+          title: 'Taealam | Sign-up',
           login: false,
           admin: false
         }
@@ -32,7 +32,7 @@ const routes = [
         name: 'Login',
         component: () => import(/* webpackChunkName: "login" */ '@/views/front/LoginView.vue'),
         meta: {
-          title: '購物網 | 登入',
+          title: 'Taealam | Login',
           login: false,
           admin: false
         }
@@ -66,6 +66,46 @@ const routes = [
           login: true,
           admin: false
         }
+      },
+      {
+        path: 'courses',
+        name: 'Courses',
+        component: () => import(/* webpackChunkName: "courses" */ '@/views/front/CoursesView.vue'),
+        meta: {
+          title: 'Taealam | Courses',
+          login: false,
+          admin: false
+        }
+      },
+      {
+        path: 'culturecorner',
+        name: 'Culture Corner',
+        component: () => import(/* webpackChunkName: "culturecorner" */ '@/views/front/CultureCorner.vue'),
+        meta: {
+          title: 'Taealam | Culture Corner',
+          login: false,
+          admin: false
+        }
+      },
+      {
+        path: 'discussionboard',
+        name: 'Discussion Board',
+        component: () => import(/* webpackChunkName: "discussionboard" */ '@/views/front/DiscussionBoard.vue'),
+        meta: {
+          title: 'Taealam | Discussion Board',
+          login: true,
+          admin: false
+        }
+      },
+      {
+        path: 'aboutus',
+        name: 'About Us',
+        component: () => import(/* webpackChunkName: "aboutus" */ '@/views/front/AboutUsView.vue'),
+        meta: {
+          title: 'Taealam | About Us',
+          login: false,
+          admin: false
+        }
       }
     ]
   },
@@ -78,7 +118,7 @@ const routes = [
         name: 'AdminHome',
         component: () => import(/* webpackChunkName: "admin-home" */ '@/views/admin/HomeView.vue'),
         meta: {
-          title: '購物網 | 管理',
+          title: 'Taealam | Admin Home',
           login: true,
           admin: true
         }
@@ -94,11 +134,31 @@ const routes = [
         }
       },
       {
-        path: 'orders',
-        name: 'AdminOrders',
-        component: () => import(/* webpackChunkName: "admin-orders" */ '@/views/admin/OrdersView.vue'),
+        path: 'courses',
+        name: 'AdminCourses',
+        component: () => import(/* webpackChunkName: "admin-courses" */ '@/views/admin/CoursesView.vue'),
         meta: {
-          title: '購物網 | 訂單管理',
+          title: 'Taealam | Courses',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'culturecorner',
+        name: 'AdminCultureCorner',
+        component: () => import(/* webpackChunkName: "admin-culturecorner" */ '@/views/admin/CultureCorner.vue'),
+        meta: {
+          title: 'Taealam | Culture Corner',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'orders',
+        name: 'AdminDiscussionBoard',
+        component: () => import(/* webpackChunkName: "admin-discussionboard" */ '@/views/admin/DiscussionBoard.vue'),
+        meta: {
+          title: 'Taealam | Discussion Board',
           login: true,
           admin: true
         }
