@@ -61,8 +61,8 @@ const drawer = ref(false)
 const navItems = computed(() => {
   return [
     { to: '/courses', text: 'Courses', icon: '', show: true },
-    { to: '/culturecorner', text: 'Culture Corner', icon: '', show: true },
-    { to: '/discussionboard', text: 'Discussion Board', icon: '', show: true },
+    { to: '/culture', text: 'Culture Corner', icon: '', show: true },
+    { to: '/discussion', text: 'Discussion Board', icon: '', show: true },
     { to: '/aboutus', text: 'About Us', icon: '', show: true },
     { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
     { to: '/login', text: 'Log In', icon: 'mdi-login', show: !user.isLogin },
@@ -75,7 +75,7 @@ const logout = async () => {
     await apiAuth.delete('/users/logout')
     user.logout()
     createSnackbar({
-      text: '登出成功',
+      text: 'You have been logged out',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,

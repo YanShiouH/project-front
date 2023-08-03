@@ -2,16 +2,16 @@
   <v-card>
     <v-img :src="image" cover height="200"></v-img>
     <v-card-title>
-      <router-link :to="'/products/' + _id" class="text-primary text-decoration-none">
-        {{ name }}
+      <router-link :to="'/culture/' + _id" class="text-primary text-decoration-none">
+        {{ title }}
       </router-link>
     </v-card-title>
-    <v-card-subtitle>${{ price }}</v-card-subtitle>
+    <!-- <v-card-subtitle>${{ price }}</v-card-subtitle> -->
     <v-card-text>
-      <pre>{{ description }}</pre>
+      <pre>{{ content }}</pre>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" prepend-icon="mdi-cart" @click="addCart">加入購物車</v-btn>
+      <v-btn color="primary" prepend-icon="mdi-heart" @click="addCart">Collect</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -30,11 +30,11 @@ const props = defineProps({
     type: String,
     default: () => ''
   },
-  category: {
+  title: {
     type: String,
     default: () => ''
   },
-  description: {
+  content: {
     type: String,
     default: () => ''
   },
@@ -42,15 +42,7 @@ const props = defineProps({
     type: String,
     default: () => ''
   },
-  name: {
-    type: String,
-    default: () => ''
-  },
-  price: {
-    type: Number,
-    default: () => 0
-  },
-  sell: {
+  publish: {
     type: Boolean,
     default: () => true
   }

@@ -2,11 +2,11 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>Taealam</h1>
+        <h1>Taealam Home</h1>
       </v-col>
-      <v-col cols="12" md="6" lg="3" v-for="product in products" :key="product._id">
+      <!-- <v-col cols="12" md="6" lg="3" v-for="product in products" :key="product._id">
         <ProductCard v-bind="product"></ProductCard>
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>
@@ -22,7 +22,7 @@ const products = ref([]);
 
 (async () => {
   try {
-    const { data } = await api.get('/products')
+    const { data } = await api.get('/culture')
     products.value.push(...data.result)
   } catch (error) {
     createSnackbar({

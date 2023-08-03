@@ -38,35 +38,35 @@ const routes = [
         }
       },
       {
-        path: 'products/:id',
-        name: 'Product',
-        component: () => import(/* webpackChunkName: "product" */ '@/views/front/ProductView.vue'),
+        path: 'culture/:id',
+        name: 'Culture Article',
+        component: () => import(/* webpackChunkName: "product" */ '@/views/front/CultureArticle.vue'),
         meta: {
-          title: '購物網 | 商品',
+          title: 'Taealam | Article',
           login: false,
           admin: false
         }
       },
-      {
-        path: 'cart',
-        name: 'Cart',
-        component: () => import(/* webpackChunkName: "cart" */ '@/views/front/CartView.vue'),
-        meta: {
-          title: '購物網 | 購物車',
-          login: true,
-          admin: false
-        }
-      },
-      {
-        path: 'orders',
-        name: 'Orders',
-        component: () => import(/* webpackChunkName: "orders" */ '@/views/front/OrdersView.vue'),
-        meta: {
-          title: '購物網 | 訂單',
-          login: true,
-          admin: false
-        }
-      },
+      // {
+      //   path: 'cart',
+      //   name: 'Cart',
+      //   component: () => import(/* webpackChunkName: "cart" */ '@/views/front/CartView.vue'),
+      //   meta: {
+      //     title: '購物網 | 購物車',
+      //     login: true,
+      //     admin: false
+      //   }
+      // },
+      // {
+      //   path: 'orders',
+      //   name: 'Orders',
+      //   component: () => import(/* webpackChunkName: "orders" */ '@/views/front/OrdersView.vue'),
+      //   meta: {
+      //     title: '購物網 | 訂單',
+      //     login: true,
+      //     admin: false
+      //   }
+      // },
       {
         path: 'courses',
         name: 'Courses',
@@ -78,8 +78,8 @@ const routes = [
         }
       },
       {
-        path: 'culturecorner',
-        name: 'Culture Corner',
+        path: 'culture',
+        name: 'Culture',
         component: () => import(/* webpackChunkName: "culturecorner" */ '@/views/front/CultureCorner.vue'),
         meta: {
           title: 'Taealam | Culture Corner',
@@ -88,12 +88,12 @@ const routes = [
         }
       },
       {
-        path: 'discussionboard',
-        name: 'Discussion Board',
+        path: 'discussion',
+        name: 'Discussion',
         component: () => import(/* webpackChunkName: "discussionboard" */ '@/views/front/DiscussionBoard.vue'),
         meta: {
           title: 'Taealam | Discussion Board',
-          login: true,
+          login: false,
           admin: false
         }
       },
@@ -144,8 +144,8 @@ const routes = [
         }
       },
       {
-        path: 'culturecorner',
-        name: 'AdminCultureCorner',
+        path: 'culture',
+        name: 'AdminCulture',
         component: () => import(/* webpackChunkName: "admin-culturecorner" */ '@/views/admin/CultureCorner.vue'),
         meta: {
           title: 'Taealam | Culture Corner',

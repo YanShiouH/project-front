@@ -30,9 +30,9 @@ export default createVuetify({
         }
       }
     }
-  },
-  locale: {
-    locale: 'zhHant',
-    messages: { zhHant }
   }
+  // locale: {
+  //   locale: 'zhHant',
+  //   messages: { zhHant }
+  // }
 })
