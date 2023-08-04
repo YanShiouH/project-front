@@ -18,8 +18,8 @@
     </v-row>
   </v-container>
   <v-overlay :model-value="!culture.publish" persistent class="align-center text-center justify-center">
-    <h1 class="text-red">已移除</h1>
-    <v-btn to="/">回上頁</v-btn>
+    <h1 class="text-red">Article has been removed</h1>
+    <v-btn to="/">Back</v-btn>
   </v-overlay>
 </template>
 

@@ -11,7 +11,7 @@
       <pre>{{ content }}</pre>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" prepend-icon="mdi-heart" @click="addCart">Collect</v-btn>
+      <v-btn color="primary" @click="addLike" icon="mdi-heart"></v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -48,14 +48,23 @@ const props = defineProps({
   }
 })
 
-const addCart = async () => {
+const addLike = async () => {
   try {
-    const { data } = await apiAuth.post('/users/cart', {
-      product: props._id,
-      quantity: 1
+    const { data } = await apiAuth.post('/users/like', {
+      culture: props._id
     })
-    user.cart = data.result
+    user.profile = data.result
+    createSnackbar({
+      text: 'Article liked!',
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'green',
+        location: 'bottom'
+      }
+    })
   } catch (error) {
+    console.log(error)
     createSnackbar({
       text: error.response.data.message,
       showCloseButton: false,

@@ -7,15 +7,15 @@ export const useUserStore = defineStore('user', () => {
   const token = ref('')
   const account = ref('')
   const email = ref('')
-  const cart = ref(0)
   const role = ref(UserRole.USER)
+  const profile = ref([])
 
   const login = (data) => {
     token.value = data.token
     account.value = data.account
     email.value = data.email
-    cart.value = data.cart
     role.value = data.role
+    profile.value = data.profile
   }
   const isLogin = computed(() => {
     return token.value.length > 0
@@ -32,8 +32,8 @@ export const useUserStore = defineStore('user', () => {
       const { data } = await apiAuth.get('/users/me')
       account.value = data.result.account
       email.value = data.result.email
-      cart.value = data.result.cart
       role.value = data.result.role
+      profile.value = data.result.profile
     } catch (error) {
       token.value = ''
     }
@@ -42,11 +42,11 @@ export const useUserStore = defineStore('user', () => {
     token.value = ''
     account.value = ''
     email.value = ''
-    cart.value = 0
     role.value = UserRole.USER
+    profile.value = []
   }
   return {
-    token, account, email, cart, role, login, isLogin, isAdmin, avatar, getProfile, logout
+    token, account, email, role, login, isLogin, isAdmin, avatar, getProfile, logout
   }
 }, {
   persist: {
