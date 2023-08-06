@@ -8,14 +8,14 @@ export const useUserStore = defineStore('user', () => {
   const account = ref('')
   const email = ref('')
   const role = ref(UserRole.USER)
-  const profile = ref([])
+  // const profile = ref([])
 
   const login = (data) => {
     token.value = data.token
     account.value = data.account
     email.value = data.email
     role.value = data.role
-    profile.value = data.profile
+    // profile.value = data.profile
   }
   const isLogin = computed(() => {
     return token.value.length > 0
@@ -33,7 +33,7 @@ export const useUserStore = defineStore('user', () => {
       account.value = data.result.account
       email.value = data.result.email
       role.value = data.result.role
-      profile.value = data.result.profile
+      // profile.value = data.result.profile
     } catch (error) {
       token.value = ''
     }
@@ -43,7 +43,7 @@ export const useUserStore = defineStore('user', () => {
     account.value = ''
     email.value = ''
     role.value = UserRole.USER
-    profile.value = []
+    // profile.value = []
   }
   return {
     token, account, email, role, login, isLogin, isAdmin, avatar, getProfile, logout
