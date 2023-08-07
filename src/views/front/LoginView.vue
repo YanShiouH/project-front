@@ -59,7 +59,7 @@ const submit = handleSubmit(async (values) => {
       token: data.result.token,
       account: data.result.account,
       email: data.result.email,
-      cart: data.result.cart,
+      profile: data.result.profile,
       role: data.result.role
     })
     createSnackbar({

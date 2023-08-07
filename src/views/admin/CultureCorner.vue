@@ -85,7 +85,7 @@ const tableHeaders = [
   { title: 'Title', align: 'center', sortable: true, key: 'title' },
   { title: 'Content', align: 'center', sortable: true, key: 'content' },
   { title: 'Date', align: 'center', sortable: true, key: 'date' },
-  { title: 'Likes', align: 'center', sortable: true, key: 'likes' },
+  { title: 'Likes', align: 'center', sortable: true, key: 'likes.length' },
   { title: 'Publish', align: 'center', sortable: true, key: 'publish' },
   { title: 'Edit', align: 'center', sortable: false, key: 'edit' }
 ]
@@ -115,9 +115,7 @@ const tableLoadItems = async () => {
     })
     tableProducts.value.splice(0, tableProducts.value.length, ...data.result.data)
     tableItemsLength.value = data.result.count
-    console.log('API Response:', data)
   } catch (error) {
-    console.log(error)
     createSnackbar({
       text: error.response.data.message,
       showCloseButton: false,

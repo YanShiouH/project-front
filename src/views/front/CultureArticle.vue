@@ -85,7 +85,6 @@ const culture = ref({
     culture.value.image = data.result.image
     culture.value.publish = data.result.publish
     culture.value.date = data.result.date
-    console.log(data)
     document.title = 'Taealam | ' + culture.value.title
   } catch (error) {
     createSnackbar({

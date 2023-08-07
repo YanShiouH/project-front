@@ -154,7 +154,7 @@ const routes = [
         }
       },
       {
-        path: 'orders',
+        path: 'discussion',
         name: 'AdminDiscussionBoard',
         component: () => import(/* webpackChunkName: "admin-discussionboard" */ '@/views/admin/DiscussionBoard.vue'),
         meta: {

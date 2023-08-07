@@ -6,18 +6,17 @@
         {{ title }}
       </router-link>
     </v-card-title>
-    <!-- <v-card-subtitle>${{ price }}</v-card-subtitle> -->
     <v-card-text>
       <pre>{{ content }}</pre>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="primary" @click="addLike" icon="mdi-heart"></v-btn>
+      <v-btn :color="isLiked ? 'red' : 'primary'" @click="addLike" icon="mdi-heart"></v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 import { useUserStore } from '@/store/user'
 import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
@@ -47,22 +46,29 @@ const props = defineProps({
     default: () => true
   }
 })
-
+const isLiked = computed(() => {
+  return user.profile[0].likedArticles.some(
+    item => item.toString() === props._id)
+})
 const addLike = async () => {
   try {
     const { data } = await apiAuth.post('/users/like', {
       culture: props._id
     })
+    console.log(data)
     user.profile = data.result
-    createSnackbar({
-      text: 'Article liked!',
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'green',
-        location: 'bottom'
-      }
-    })
+    if (user.profile[0].likedArticles.some(
+      item => item.toString() === props._id)) {
+      createSnackbar({
+        text: 'Article liked!',
+        showCloseButton: false,
+        snackbarProps: {
+          timeout: 2000,
+          color: 'green',
+          location: 'bottom'
+        }
+      })
+    }
   } catch (error) {
     console.log(error)
     createSnackbar({
@@ -76,4 +82,5 @@ const addLike = async () => {
     })
   }
 }
+
 </script>
