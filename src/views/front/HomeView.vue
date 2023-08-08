@@ -4,8 +4,8 @@
       <v-col cols="12">
         <h1>Taealam Home</h1>
       </v-col>
-      <!-- <v-col cols="12" md="6" lg="3" v-for="product in products" :key="product._id">
-        <ProductCard v-bind="product"></ProductCard>
+      <!-- <v-col cols="12" md="6" lg="3" v-for="cultureItem in culture" :key="cultureItem._id">
+        <ProductCard v-bind="culture"></ProductCard>
       </v-col> -->
     </v-row>
   </v-container>
@@ -14,27 +14,27 @@
 import { api } from '@/plugins/axios'
 import { ref } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
-import ProductCard from '@/components/ProductCard.vue'
+// import CultureCard from '@/components/CultureCard.vue'
 
 const createSnackbar = useSnackbar()
 
-const products = ref([]);
+// const culture = ref([]);
 
-(async () => {
-  try {
-    const { data } = await api.get('/culture')
-    products.value.push(...data.result)
-  } catch (error) {
-    createSnackbar({
-      text: error.response.data.message,
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
-    })
-  }
-})()
+// (async () => {
+//   try {
+//     const { data } = await api.get('/culture')
+//     culture.value.push(...data.result)
+//   } catch (error) {
+//     createSnackbar({
+//       text: error.response.data.message,
+//       showCloseButton: false,
+//       snackbarProps: {
+//         timeout: 2000,
+//         color: 'red',
+//         location: 'bottom'
+//       }
+//     })
+//   }
+// })()
 
 </script>

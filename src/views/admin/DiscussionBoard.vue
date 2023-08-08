@@ -78,7 +78,7 @@ const tableHeaders = [
   { title: 'Title', align: 'center', sortable: true, key: 'title' },
   { title: 'Content', align: 'center', sortable: true, key: 'content' },
   { title: 'Date', align: 'center', sortable: true, key: 'date' },
-  { title: 'Comments', align: 'center', sortable: false, key: 'comments.length' },
+  { title: 'Comments', align: 'center', sortable: true, key: 'comments.length' },
   { title: 'Status', align: 'center', sortable: true, key: 'status' },
   { title: 'Edit', align: 'center', sortable: false, key: 'edit' }
 ]
@@ -130,7 +130,7 @@ const tableEditItem = (item) => {
   // 表單填入預設值
   title.value.value = item.title
   content.value.value = item.content
-  category.value.value = item.category
+  category.value.value = item.status
 
   // 打開表單
   dialog.value = true
@@ -177,21 +177,18 @@ const category = useField('category')
 const submit = handleSubmit(async (values) => {
   // if (dialogId.value.length === 0 && files.value.length === 0) return
   try {
-    const fd = new FormData()
-    fd.append('name', values.name)
-    fd.append('price', values.price)
-    fd.append('description', values.description)
-    fd.append('category', values.category)
-    fd.append('sell', values.sell)
-    if (files.value.length > 0) fd.append('image', files.value[0].file)
+    const formData = new FormData()
+    formData.append('status', values.category)
+    // fd.append('price', values.price)
+    // fd.append('description', values.description)
+    // fd.append('category', values.category)
+    // fd.append('sell', values.sell)
+    // if (files.value.length > 0) fd.append('image', files.value[0].file)
 
-    if (dialogId.value.length > 0) {
-      await apiAuth.patch('/products/' + dialogId.value, fd)
-    } else {
-      await apiAuth.post('/products', fd)
-    }
+    await apiAuth.patch('admin/discussion/' + dialogId.value, formData)
+
     createSnackbar({
-      text: '新增成功',
+      text: 'Review Completed',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,

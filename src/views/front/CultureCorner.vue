@@ -2,10 +2,11 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1>Taealam</h1>
+        <h1 class="text-center">Culture Corner</h1>
       </v-col>
+      <v-divider></v-divider>
       <v-col cols="12" md="6" lg="3" v-for="cultureItem in culture" :key="cultureItem._id">
-        <ProductCard v-bind="cultureItem"></ProductCard>
+        <CultureCard v-bind="cultureItem"></CultureCard>
       </v-col>
     </v-row>
   </v-container>
@@ -14,7 +15,7 @@
 import { api } from '@/plugins/axios'
 import { ref } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
-import ProductCard from '@/components/ProductCard.vue'
+import CultureCard from '@/components/CultureCard.vue'
 
 const createSnackbar = useSnackbar()
 

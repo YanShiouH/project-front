@@ -47,6 +47,9 @@ const props = defineProps({
   }
 })
 const isLiked = computed(() => {
+  if (!user.profile || !user.profile[0] || !user.profile[0].likedArticles) {
+    return false // Set a default value, e.g., not liked
+  }
   return user.profile[0].likedArticles.some(
     item => item.toString() === props._id)
 })

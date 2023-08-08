@@ -26,6 +26,9 @@
           </template>
         </v-data-table-server> -->
       </v-col>
+      <v-col cols="12" md="6" lg="3" v-for="post in posts" :key="post._id">
+        <PostCard v-bind="post"></PostCard>
+      </v-col>
     </v-row>
   </v-container>
   <v-dialog persistent v-model="dialog" width="500px">
@@ -51,11 +54,29 @@
 import { ref } from 'vue'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
-import { apiAuth } from '@/plugins/axios'
+import { apiAuth, api } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
+import PostCard from '@/components/PostCard.vue'
 
 const createSnackbar = useSnackbar()
+const posts = ref([]);
 
+(async () => {
+  try {
+    const { data } = await api.get('/discussion')
+    posts.value.push(...data.result)
+  } catch (error) {
+    createSnackbar({
+      text: error.response.data.message,
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'red',
+        location: 'bottom'
+      }
+    })
+  }
+})()
 // 目前表格設定一頁幾筆
 const tableItemsPerPage = ref(5)
 // 目前表格設定排序

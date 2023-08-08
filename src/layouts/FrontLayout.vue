@@ -1,15 +1,15 @@
 <template>
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
+      <!-- 要修正 -->
+      <v-list-item to="/admin"><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-list-item>
       <template v-for="navItem in navItems" :key="navItem.to">
         <v-list-item v-if="navItem.show" :to="navItem.to">
           <template #prepend>
             <v-icon :icon="navItem.icon"></v-icon>
           </template>
-          <!-- <template #append>
-            <v-badge color="success" :content="cart.toString()" v-if="navItem.to === '/cart'"></v-badge>
-          </template> -->
-          <v-list-item-title>{{ navItem.text }}</v-list-item-title></v-list-item></template>
+          <v-list-item-title>{{ navItem.text }}</v-list-item-title></v-list-item>
+      </template>
       <v-list-item v-if="isLogin" @click="logout">
         <template #prepend>
           <v-icon icon="mdi-logout"></v-icon>
@@ -28,13 +28,13 @@
       <template v-if="!isMobile">
         <template v-for="navItem in navItems" :key="navItem.to">
           <v-btn variant="text" :prepend-icon="navItem.icon" :to="navItem.to" v-if="navItem.show">{{ navItem.text
-          }}<v-badge color="success" :content="cart.toString()" floating
-              v-if="navItem.to === '/cart'"></v-badge></v-btn>
-        </template></template>
+          }}</v-btn>
+        </template>
+        <v-btn><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-btn>
+      </template>
       <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">Sign Out</v-btn>
     </v-container>
   </v-app-bar>
-
   <v-main>
     <router-view :key="$route.path"></router-view>
   </v-main>
@@ -51,7 +51,8 @@ import { useSnackbar } from 'vuetify-use-dialog'
 const createSnackbar = useSnackbar()
 
 const user = useUserStore()
-const { isLogin, isAdmin, cart } = storeToRefs(user)
+
+const { isLogin, isAdmin, cart, avatar, account } = storeToRefs(user)
 
 const { mobile } = useDisplay()
 const isMobile = computed(() => mobile.value)

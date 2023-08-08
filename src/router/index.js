@@ -98,6 +98,16 @@ const routes = [
         }
       },
       {
+        path: 'discussion/:id',
+        name: 'Discussion Post',
+        component: () => import(/* webpackChunkName: "discussionboard" */ '@/views/front/DiscussionArticle.vue'),
+        meta: {
+          title: 'Taealam | Discussion Post',
+          login: false,
+          admin: false
+        }
+      },
+      {
         path: 'aboutus',
         name: 'About Us',
         component: () => import(/* webpackChunkName: "aboutus" */ '@/views/front/AboutUsView.vue'),
