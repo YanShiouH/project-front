@@ -7,14 +7,14 @@
       <v-divider></v-divider>
       <v-col cols="12">
         <v-form :disabled="isSubmitting" @submit.prevent="submit">
-          <v-text-field v-model="account.value.value" :error-messages="account.errorMessage.value" label="帳號" counter
+          <v-text-field v-model="account.value.value" :error-messages="account.errorMessage.value" label="Account" counter
             max-length="20"></v-text-field>
-          <v-text-field v-model="email.value.value" :error-messages="email.errorMessage.value" label="信箱"
+          <v-text-field v-model="email.value.value" :error-messages="email.errorMessage.value" label="Email"
             type="email"></v-text-field>
-          <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.valye" label="密碼" counter
-            max-length="20" type="password"></v-text-field>
+          <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="Password"
+            counter max-length="20" type="password"></v-text-field>
           <v-text-field v-model="passwordConfirm.value.value" :error-messages="passwordConfirm.errorMessage.value"
-            label="確認密碼" counter max-length="20" type="password"></v-text-field>
+            label="Confirm Password" counter max-length="20" type="password"></v-text-field>
           <div class="text-center">
             <v-btn type="submit" color="green" text-center>Sign Up</v-btn>
           </div>
@@ -37,29 +37,29 @@ const router = useRouter()
 const schema = yup.object({
   account: yup
     .string()
-    .required('帳號必填')
-    .min(4, '帳號最少4個字')
-    .max(20, '帳號最多20個字'),
+    .required('Account is required')
+    .min(4, 'Account should have at least 4 characters')
+    .max(20, 'Account should not exceed 20 characters'),
   email: yup
     .string()
-    .required('信箱必填')
+    .required('Email is required')
     .test(
-      'isEmail', '信箱格式錯誤', (value) => validator.isEmail(value)
+      'isEmail', 'Invalid email format', (value) => validator.isEmail(value)
     ),
   password: yup
     .string()
-    .required('密碼必填')
-    .min(4, '密碼最少4個字')
-    .max(20, '密碼最多20個字'),
+    .required('Password is required')
+    .min(4, 'Password should have at least 4 characters')
+    .max(20, 'Password should not exceed 20 characters'),
   passwordConfirm: yup
     .string()
-    .required('密碼必填')
-    .min(4, '密碼最少4個字')
-    .max(20, '密碼最多20個字')
-    .oneOf([yup.ref('password')], '密碼不一致')
+    .required('Password is required')
+    .min(4, 'Password should have at least 4 characters')
+    .max(20, 'Password should not exceed 20 characters')
+    .oneOf([yup.ref('password')], 'Passwords do not match')
 })
 
-const { handleSubmit, isSubmitting, handleReset } = useForm({
+const { handleSubmit, isSubmitting } = useForm({
   validationSchema: schema
 })
 const account = useField('account')
@@ -75,7 +75,7 @@ const submit = handleSubmit(async (values) => {
       password: values.password
     })
     createSnackbar({
-      text: '註冊成功',
+      text: 'Registration successful',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,

@@ -52,11 +52,11 @@ import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
-import { useUserStore } from '@/store/user'
+// import { useUserStore } from '@/store/user'
 import CommentCard from '@/components/CommentCard.vue'
 const route = useRoute()
 const createSnackbar = useSnackbar()
-const user = useUserStore()
+// const user = useUserStore()
 
 // const schema = yup.object({
 //   quantity: yup.number().typeError('缺少數量').required('缺少數量').min(1, '最少為1')
@@ -96,8 +96,8 @@ const posts = ref({
   account: '',
   date: '',
   status: ''
-});
-
+})
+const comments = ref([]);
 (async () => {
   try {
     const { data } = await api.get('/discussion/' + route.params.id)
@@ -108,6 +108,7 @@ const posts = ref({
     posts.value.status = data.result.status
     posts.value.date = data.result.date
     document.title = 'Taealam | ' + posts.value.title
+    comments.value.push(...data.commentResult)
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -120,24 +121,23 @@ const posts = ref({
     })
   }
 })()
-const comments = ref([]);
 
-(async () => {
-  try {
-    const { data } = await api.get('/discussion/' + route.params.id + '/1')
-    comments.value.push(...data.result)
-  } catch (error) {
-    createSnackbar({
-      text: error.response.data.message,
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
-    })
-  }
-})()
+// (async () => {
+//   try {
+//     const { data } = await api.get('/discussion/' + route.params.id)
+
+//   } catch (error) {
+//     createSnackbar({
+//       text: error.response.data.message,
+//       showCloseButton: false,
+//       snackbarProps: {
+//         timeout: 2000,
+//         color: 'red',
+//         location: 'bottom'
+//       }
+//     })
+//   }
+// })()
 
 const dialog = ref(false)
 const dialogId = ref('')
@@ -180,6 +180,8 @@ const submit = handleSubmit(async (values) => {
       }
     })
     closeDialog()
+    const { data } = await api.get('/discussion/' + route.params.id)
+    comments.value = [...data.commentResult]
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,

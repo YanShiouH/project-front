@@ -36,37 +36,6 @@ const route = useRoute()
 const createSnackbar = useSnackbar()
 // const user = useUserStore()
 
-// const schema = yup.object({
-//   quantity: yup.number().typeError('缺少數量').required('缺少數量').min(1, '最少為1')
-// })
-// const { isSubmitting, handleSubmit } = useForm({
-//   validationSchema: schema,
-//   initialValues: {
-//     quantity: 0
-//   }
-// })
-// const quantity = useField('quantity')
-
-// const submit = handleSubmit(async (values) => {
-//   try {
-//     const { data } = await apiAuth.post('/users/cart', {
-//       product: product.value._id,
-//       quantity: values.quantity
-//     })
-//     user.cart = data.result
-//   } catch (error) {
-//     createSnackbar({
-//       text: error.response.data.message,
-//       showCloseButton: false,
-//       snackbarProps: {
-//         timeout: 2000,
-//         color: 'red',
-//         location: 'bottom'
-//       }
-//     })
-//   }
-// })
-
 const culture = ref({
   _id: '',
   title: '',

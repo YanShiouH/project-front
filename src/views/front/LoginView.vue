@@ -7,10 +7,10 @@
       <v-divider></v-divider>
       <v-col cols="12">
         <v-form :disabled="isSubmitting" @submit.prevent="submit">
-          <v-text-field v-model="account.value.value" :error-messages="account.errorMessage.value" label="帳號" counter
+          <v-text-field v-model="account.value.value" :error-messages="account.errorMessage.value" label="Account" counter
             maxlength="20"></v-text-field>
-          <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="密碼" counter
-            maxlength="20" type="password"></v-text-field>
+          <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="Password"
+            counter maxlength="20" type="password"></v-text-field>
           <div class="text-center">
             <v-btn type="submit" color="green">Log In</v-btn>
           </div>
@@ -35,14 +35,14 @@ const user = useUserStore()
 const schema = yup.object({
   account: yup
     .string()
-    .required('帳號必填')
-    .min(4, '帳號最少4個字')
-    .max(20, '帳號最多20個字'),
+    .required('Account is required')
+    .min(4, 'Account should have at least 4 characters')
+    .max(20, 'Account should not exceed 20 characters'),
   password: yup
     .string()
-    .required('密碼必填')
-    .min(4, '密碼最少4個字')
-    .max(20, '密碼最多20個字')
+    .required('Password is required')
+    .min(4, 'Password should have at least 4 characters')
+    .max(20, 'Password should not exceed 20 characters')
 })
 const { handleSubmit, isSubmitting } = useForm({
   validationSchema: schema
@@ -63,7 +63,7 @@ const submit = handleSubmit(async (values) => {
       role: data.result.role
     })
     createSnackbar({
-      text: '登入成功',
+      text: 'Login successful',
       showCloseButton: false,
       snackbarProps: {
         timeout: 2000,

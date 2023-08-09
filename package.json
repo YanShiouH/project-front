@@ -17,7 +17,7 @@
     "pinia-plugin-persistedstate": "^3.2.0",
     "roboto-fontface": "*",
     "validator": "^13.9.0",
-    "vee-validate": "^4.10.8",
+    "vee-validate": "^4.11.1",
     "vue": "^3.2.0",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
