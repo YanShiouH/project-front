@@ -30,7 +30,7 @@
   </v-container>
   <v-dialog persistent v-model="dialog" width="500px">
     <v-form :disabled="isSubmitting" @submit.prevent="submit">
-      <v-card>
+      <v-card class="dialog-card">
         <v-card-title>{{ dialogId.length > 0 ? 'Edit Course' : 'Add Course' }}</v-card-title>
         <v-card-text>
           <v-text-field label="Lesson No." v-model="lessonNo.value.value"
@@ -83,9 +83,9 @@ const tableProducts = ref([])
 // 表格欄位
 const tableHeaders = [
   { title: 'Lesson No.', align: 'center', sortable: true, key: 'lessonNo' },
-  { title: 'Topic', align: 'center', sortable: false, key: 'topic' },
-  { title: 'Description', align: 'center', sortable: false, key: 'description' },
-  { title: 'Content', align: 'center', sortable: false, key: 'content' },
+  { title: 'Topic', align: 'center', sortable: true, key: 'topic' },
+  { title: 'Description', align: 'center', sortable: true, key: 'description' },
+  { title: 'Content', align: 'center', sortable: true, key: 'content' },
   { title: 'Publish', align: 'center', sortable: true, key: 'publish' },
   { title: 'Edit', align: 'center', sortable: false, key: 'edit' }
 ]
@@ -104,17 +104,17 @@ const tableApplySearch = () => {
 const tableLoadItems = async () => {
   tableLoading.value = true
   try {
-    // const { data } = await apiAuth.get('/culture/all', {
-    //   params: {
-    //     page: tablePage.value,
-    //     itemsPerPage: tableItemsPerPage.value,
-    //     sortBy: tableSortBy.value[0]?.key || 'title',
-    //     sortOrder: tableSortBy.value[0]?.order || 'asc',
-    //     search: tableSearch.value
-    //   }
-    // })
-    // tableProducts.value.splice(0, tableProducts.value.length, ...data.result.data)
-    // tableItemsLength.value = data.result.count
+    const { data } = await apiAuth.get('/courses/all', {
+      params: {
+        page: tablePage.value,
+        itemsPerPage: tableItemsPerPage.value,
+        sortBy: tableSortBy.value[0]?.key || 'title',
+        sortOrder: tableSortBy.value[0]?.order || 'asc',
+        search: tableSearch.value
+      }
+    })
+    tableProducts.value.splice(0, tableProducts.value.length, ...data.result.data)
+    tableItemsLength.value = data.result.count
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -137,9 +137,7 @@ const tableEditItem = (item) => {
   lessonNo.value.value = item.lessonNo
   topic.value.value = item.topic
   description.value.value = item.description
-  for (const data of item.content) {
-    push(data)
-  }
+  replace(item.content)
   publish.value.value = item.publish
   // 打開表單
   dialog.value = true
@@ -177,7 +175,7 @@ const { handleSubmit, isSubmitting, resetForm, errors } = useForm({
   },
   validateOnMount: false
 })
-const { remove, push, fields } = useFieldArray('content')
+const { remove, push, fields, replace } = useFieldArray('content')
 const lessonNo = useField('lessonNo')
 const description = useField('description')
 const topic = useField('topic')
@@ -185,9 +183,8 @@ const publish = useField('publish')
 
 const submit = handleSubmit(async (values) => {
   try {
-    console.log(values)
     if (dialogId.value.length > 0) {
-      await apiAuth.patch('/culture/' + dialogId.value, values)
+      await apiAuth.patch('/courses/' + dialogId.value, values)
       createSnackbar({
         text: 'Updated Successfully',
         showCloseButton: false,
@@ -198,7 +195,7 @@ const submit = handleSubmit(async (values) => {
         }
       })
     } else {
-      await apiAuth.post('/culture', values)
+      await apiAuth.post('/courses', values)
       createSnackbar({
         text: 'Added Successfully',
         showCloseButton: false,
@@ -209,7 +206,6 @@ const submit = handleSubmit(async (values) => {
         }
       })
     }
-
     closeDialog()
     tableLoadItems()
   } catch (error) {
@@ -225,3 +221,10 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style>
+.dialog-card {
+  max-height: 80vh !important;
+  overflow-y: auto !important;
+}
+</style>

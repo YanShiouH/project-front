@@ -61,13 +61,13 @@ const drawer = ref(false)
 
 const navItems = computed(() => {
   return [
-    { to: '/courses', text: 'Courses', icon: '', show: true },
+    { to: '/courses', text: 'Courses', icon: '', show: isLogin.value },
     { to: '/culture', text: 'Culture Corner', icon: '', show: true },
     { to: '/discussion', text: 'Discussion Board', icon: '', show: true },
     { to: '/aboutus', text: 'About Us', icon: '', show: true },
     { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
-    { to: '/login', text: 'Log In', icon: 'mdi-login', show: !user.isLogin },
-    { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !user.isLogin }
+    { to: '/login', text: 'Log In', icon: 'mdi-login', show: !isLogin.value },
+    { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !isLogin.value }
   ]
 })
 

@@ -2,11 +2,11 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <h1 class="text-center">Courses</h1>
+        <h1 class="text-center">Lesson {{ lessonNo }}</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12" md="6" lg="3" v-for="course in courses" :key="course._id">
-        <CourseCard v-bind="course"></CourseCard>
+      <v-col cols="12" sm="3" md="2" xl="1" v-for="(item, index) in courseContent" :key="index">
+        <CourseContent :content="item"></CourseContent>
       </v-col>
     </v-row>
   </v-container>
@@ -15,17 +15,21 @@
 import { api } from '@/plugins/axios'
 import { ref } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
-import CourseCard from '@/components/CourseCard.vue'
+import CourseContent from '@/components/CourseContent.vue'
+import { useRoute } from 'vue-router'
 
 const createSnackbar = useSnackbar()
-
-const courses = ref([]);
-
+const route = useRoute()
+const courseContent = ref([])
+const lessonNo = ref('');
 (async () => {
   try {
-    const { data } = await api.get('/courses')
-    courses.value.push(...data.result)
+    const { data } = await api.get('/courses/' + route.params.id)
+    console.log(data)
+    lessonNo.value = data.result.lessonNo
+    courseContent.value = [...data.result.content]
   } catch (error) {
+    console.log(error)
     createSnackbar({
       text: error.response.data.message,
       showCloseButton: false,

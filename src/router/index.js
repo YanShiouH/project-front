@@ -40,39 +40,9 @@ const routes = [
       {
         path: 'culture/:id',
         name: 'Culture Article',
-        component: () => import(/* webpackChunkName: "product" */ '@/views/front/CultureArticle.vue'),
+        component: () => import(/* webpackChunkName: "cultureArticle" */ '@/views/front/CultureArticle.vue'),
         meta: {
           title: 'Taealam | Article',
-          login: false,
-          admin: false
-        }
-      },
-      // {
-      //   path: 'cart',
-      //   name: 'Cart',
-      //   component: () => import(/* webpackChunkName: "cart" */ '@/views/front/CartView.vue'),
-      //   meta: {
-      //     title: '購物網 | 購物車',
-      //     login: true,
-      //     admin: false
-      //   }
-      // },
-      // {
-      //   path: 'orders',
-      //   name: 'Orders',
-      //   component: () => import(/* webpackChunkName: "orders" */ '@/views/front/OrdersView.vue'),
-      //   meta: {
-      //     title: '購物網 | 訂單',
-      //     login: true,
-      //     admin: false
-      //   }
-      // },
-      {
-        path: 'courses',
-        name: 'Courses',
-        component: () => import(/* webpackChunkName: "courses" */ '@/views/front/CoursesView.vue'),
-        meta: {
-          title: 'Taealam | Courses',
           login: false,
           admin: false
         }
@@ -80,7 +50,7 @@ const routes = [
       {
         path: 'culture',
         name: 'Culture',
-        component: () => import(/* webpackChunkName: "culturecorner" */ '@/views/front/CultureCorner.vue'),
+        component: () => import(/* webpackChunkName: "cultureCorner" */ '@/views/front/CultureCorner.vue'),
         meta: {
           title: 'Taealam | Culture Corner',
           login: false,
@@ -88,9 +58,29 @@ const routes = [
         }
       },
       {
+        path: 'courses',
+        name: 'Courses',
+        component: () => import(/* webpackChunkName: "courses" */ '@/views/front/CoursesView.vue'),
+        meta: {
+          title: 'Taealam | Courses',
+          login: true,
+          admin: false
+        }
+      },
+      {
+        path: 'courses/:id',
+        name: 'Lesson',
+        component: () => import(/* webpackChunkName: "lesson" */ '@/views/front/LessonView.vue'),
+        meta: {
+          title: 'Taealam | Lesson',
+          login: true,
+          admin: false
+        }
+      },
+      {
         path: 'discussion',
         name: 'Discussion',
-        component: () => import(/* webpackChunkName: "discussionboard" */ '@/views/front/DiscussionBoard.vue'),
+        component: () => import(/* webpackChunkName: "discussionBoard" */ '@/views/front/DiscussionBoard.vue'),
         meta: {
           title: 'Taealam | Discussion Board',
           login: false,
@@ -100,7 +90,7 @@ const routes = [
       {
         path: 'discussion/:id',
         name: 'Discussion Post',
-        component: () => import(/* webpackChunkName: "discussionboard" */ '@/views/front/DiscussionArticle.vue'),
+        component: () => import(/* webpackChunkName: "discussionPost" */ '@/views/front/DiscussionPost.vue'),
         meta: {
           title: 'Taealam | Discussion Post',
           login: false,
@@ -134,16 +124,6 @@ const routes = [
         }
       },
       {
-        path: 'products',
-        name: 'AdminProducts',
-        component: () => import(/* webpackChunkName: "admin-products" */ '@/views/admin/ProductsView.vue'),
-        meta: {
-          title: '購物網 | 商品管理',
-          login: true,
-          admin: true
-        }
-      },
-      {
         path: 'courses',
         name: 'AdminCourses',
         component: () => import(/* webpackChunkName: "admin-courses" */ '@/views/admin/CoursesView.vue'),
@@ -156,7 +136,7 @@ const routes = [
       {
         path: 'culture',
         name: 'AdminCulture',
-        component: () => import(/* webpackChunkName: "admin-culturecorner" */ '@/views/admin/CultureCorner.vue'),
+        component: () => import(/* webpackChunkName: "admin-cultureCorner" */ '@/views/admin/CultureCorner.vue'),
         meta: {
           title: 'Taealam | Culture Corner',
           login: true,
@@ -166,7 +146,7 @@ const routes = [
       {
         path: 'discussion',
         name: 'AdminDiscussionBoard',
-        component: () => import(/* webpackChunkName: "admin-discussionboard" */ '@/views/admin/DiscussionBoard.vue'),
+        component: () => import(/* webpackChunkName: "admin-discussionBoard" */ '@/views/admin/DiscussionBoard.vue'),
         meta: {
           title: 'Taealam | Discussion Board',
           login: true,

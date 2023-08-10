@@ -11,11 +11,5 @@
   </v-container>
 </template>
 <script setup>
-// import { api } from '@/plugins/axios'
-// import { ref } from 'vue'
-// import { useSnackbar } from 'vuetify-use-dialog'
-// import CultureCard from '@/components/CultureCard.vue'
-
-// const createSnackbar = useSnackbar()
 
 </script>

@@ -6,7 +6,6 @@
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
-        <!-- <v-btn color="green" @click="openDialog">Add Article</v-btn> -->
         <v-data-table-server v-model:items-per-page="tableItemsPerPage" v-model:sort-by="tableSortBy"
           v-model:page="tablePage" :items="tableProducts" :headers="tableHeaders" :loading="tableLoading"
           :items-length="tableItemsLength" :search="tableSearch" hover @update:items-per-page="tableLoadItems"
@@ -139,10 +138,7 @@ const tableEditItem = (item) => {
 // 表單對話框
 const dialog = ref(false)
 const dialogId = ref('')
-const openDialog = () => {
-  dialogId.value = ''
-  dialog.value = true
-}
+
 const closeDialog = () => {
   dialog.value = false
   resetForm()
@@ -185,7 +181,7 @@ const submit = handleSubmit(async (values) => {
     // fd.append('sell', values.sell)
     // if (files.value.length > 0) fd.append('image', files.value[0].file)
 
-    await apiAuth.patch('admin/discussion/' + dialogId.value, formData)
+    await apiAuth.patch('/admin/discussion/' + dialogId.value, formData)
 
     createSnackbar({
       text: 'Review Completed',
