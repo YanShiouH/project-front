@@ -25,8 +25,6 @@
       <v-card>
         <v-card-title>Add New Comment</v-card-title>
         <v-card-text>
-          <!-- <v-text-field label="Title" v-model="title.value.value"
-            :error-messages="title.errorMessage.value"></v-text-field> -->
           <v-textarea label="Content" v-model="content.value.value"
             :error-messages="content.errorMessage.value"></v-textarea>
         </v-card-text>
@@ -38,11 +36,6 @@
       </v-card>
     </v-form>
   </v-dialog>
-
-  <!-- <v-overlay :model-value="!culture.publish" persistent class="align-center text-center justify-center">
-    <h1 class="text-red">Article has been removed</h1>
-    <v-btn to="/">Back</v-btn>
-  </v-overlay> -->
 </template>
 
 <script setup>
@@ -52,11 +45,9 @@ import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
-// import { useUserStore } from '@/store/user'
 import CommentCard from '@/components/CommentCard.vue'
 const route = useRoute()
 const createSnackbar = useSnackbar()
-// const user = useUserStore()
 
 const posts = ref({
   _id: '',

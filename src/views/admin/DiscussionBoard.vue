@@ -14,12 +14,6 @@
             <v-text-field label="Search" append-icon="mdi-magnify" @click:append="tableApplySearch"
               @keydown.enter="tableApplySearch" v-model="tableSearch"></v-text-field>
           </template>
-          <!-- <template #[`item.image`]="{ item }">
-            <v-img :src="item.raw.image" height="50px"></v-img>
-          </template> -->
-          <!-- <template #[`item.publish`]="{ item }">
-            <v-icon icon="mdi-check" v-if="item.raw.publish"></v-icon>
-          </template> -->
           <template #[`item.edit`]="{ item }">
             <v-btn icon="mdi-pencil" @click="tableEditItem(item.raw)" variant="text"></v-btn>
           </template>
@@ -38,7 +32,6 @@
             readonly></v-textarea>
           <v-select label="Status" v-model="category.value.value" :error-messages="category.errorMessage.value"
             :items="categories"></v-select>
-
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -142,7 +135,6 @@ const dialogId = ref('')
 const closeDialog = () => {
   dialog.value = false
   resetForm()
-  // fileAgent.value.deleteFileRecord()
 }
 
 // 表單
@@ -166,20 +158,10 @@ const title = useField('title')
 const content = useField('content')
 const category = useField('category')
 
-// const files = ref([])
-// const rawFiles = ref([])
-// const fileAgent = ref(null)
-
 const submit = handleSubmit(async (values) => {
-  // if (dialogId.value.length === 0 && files.value.length === 0) return
   try {
     const formData = new FormData()
     formData.append('status', values.category)
-    // fd.append('price', values.price)
-    // fd.append('description', values.description)
-    // fd.append('category', values.category)
-    // fd.append('sell', values.sell)
-    // if (files.value.length > 0) fd.append('image', files.value[0].file)
 
     await apiAuth.patch('/admin/discussion/' + dialogId.value, formData)
 

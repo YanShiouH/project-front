@@ -9,11 +9,6 @@
       </v-col>
       <v-col cols="6">
         <pre>{{ culture.content }}</pre>
-        <!-- <v-form :disabled="isSubmitting" @submit.prevent="submit">
-          <v-text-field v-model.number="quantity.value.value" type="number" label="數量" min="0"
-            :error-messages="quantity.errorMessage.value"></v-text-field>
-          <v-btn type="submit" color="green">加入購物車</v-btn>
-        </v-form> -->
       </v-col>
     </v-row>
   </v-container>
@@ -28,13 +23,9 @@ import { ref } from 'vue'
 import { api } from '@/plugins/axios'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
-// import * as yup from 'yup'
-// import { useForm, useField } from 'vee-validate'
-// import { useUserStore } from '@/store/user'
 
 const route = useRoute()
 const createSnackbar = useSnackbar()
-// const user = useUserStore()
 
 const culture = ref({
   _id: '',
