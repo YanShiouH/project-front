@@ -58,7 +58,6 @@ const addLike = async () => {
     const { data } = await apiAuth.post('/users/like', {
       culture: props._id
     })
-    console.log(data)
     user.profile = data.result
     if (user.profile[0].likedArticles.some(
       item => item.toString() === props._id)) {

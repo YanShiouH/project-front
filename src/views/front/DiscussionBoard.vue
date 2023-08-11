@@ -5,7 +5,7 @@
         <h1 class="text-center">Discussion Board</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12">
+      <v-col cols="12" v-if="isLogin">
         <v-btn color="green" @click="openDialog">Add New Post</v-btn>
         <!-- <v-data-table-server v-model:items-per-page="tableItemsPerPage" v-model:sort-by="tableSortBy"
           v-model:page="tablePage" :items="tableProducts" :headers="tableHeaders" :loading="tableLoading"
@@ -26,7 +26,7 @@
           </template>
         </v-data-table-server> -->
       </v-col>
-      <v-col cols="12" md="6" lg="3" v-for="post in posts" :key="post._id">
+      <v-col cols="12" v-for="post in posts" :key="post._id">
         <PostCard v-bind="post"></PostCard>
       </v-col>
     </v-row>
@@ -57,6 +57,12 @@ import * as yup from 'yup'
 import { apiAuth, api } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
 import PostCard from '@/components/PostCard.vue'
+import { useUserStore } from '@/store/user'
+import { storeToRefs } from 'pinia'
+
+const user = useUserStore()
+
+const { isLogin } = storeToRefs(user)
 
 const createSnackbar = useSnackbar()
 const posts = ref([]);

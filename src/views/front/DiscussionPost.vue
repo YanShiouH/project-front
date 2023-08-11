@@ -7,7 +7,7 @@
         <h1>{{ posts.title }}</h1>
         <pre>{{ posts.content }}</pre>
       </v-col>
-      <v-col cols="12">
+      <v-col cols="12" v-if="isLogin">
         <v-btn color="green" @click="openDialog">Add New Comment</v-btn>
         <!-- <v-form :disabled="isSubmitting" @submit.prevent="submit">
           <v-text-field v-model.number="quantity.value.value" type="number" label="數量" min="0"
@@ -46,6 +46,12 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import CommentCard from '@/components/CommentCard.vue'
+import { useUserStore } from '@/store/user'
+import { storeToRefs } from 'pinia'
+
+const user = useUserStore()
+const { isLogin } = storeToRefs(user)
+
 const route = useRoute()
 const createSnackbar = useSnackbar()
 

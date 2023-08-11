@@ -1,8 +1,16 @@
 <template>
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
-      <!-- 要修正 -->
-      <v-list-item to="/admin"><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-list-item>
+      <v-btn variant="text">
+        <v-avatar><v-img :src="avatar"></v-img></v-avatar>
+      </v-btn>
+      <!-- <v-list-item>
+        <v-avatar><v-img :src="avatar"></v-img></v-avatar></v-list-item> -->
+      <!-- <v-list-item>
+        <template #prepend>
+          <img :src="avatar" alt="Avatar">
+        </template>
+        <v-list-item-title>Profile</v-list-item-title></v-list-item> -->
       <template v-for="navItem in navItems" :key="navItem.to">
         <v-list-item v-if="navItem.show" :to="navItem.to">
           <template #prepend>
@@ -30,9 +38,38 @@
           <v-btn variant="text" :prepend-icon="navItem.icon" :to="navItem.to" v-if="navItem.show">{{ navItem.text
           }}</v-btn>
         </template>
-        <v-btn><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-btn>
+        <!-- <v-btn><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-btn> -->
       </template>
-      <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">Sign Out</v-btn>
+      <!-- <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">Sign Out</v-btn> -->
+      <v-spacer v-if="!isMobile"></v-spacer>
+      <div class="text-center" v-if="!isMobile">
+        <v-menu open-on-hover>
+          <template v-slot:activator="{ props }">
+            <v-btn v-bind="props">
+              <v-avatar><v-img :src="avatar"></v-img></v-avatar>
+            </v-btn>
+          </template>
+          <v-list v-if="isLogin">
+            <v-list-item>Welcome {{ user.account }}</v-list-item>
+            <v-list-item><v-btn variant="text">Liked Articles: {{ user.profile[0].likedArticles.length
+            }}</v-btn></v-list-item>
+            <v-list-item><v-btn variant="text">Current Lesson: {{ user.profile[0].currentLesson }}</v-btn></v-list-item>
+            <v-list-item><v-btn variant="text">Posted Posts: {{ user.profile[0].postedPosts.length
+            }}</v-btn></v-list-item>
+            <v-list-item v-if="isAdmin"><v-btn variant="text" prepend-icon="mdi-cog" :to="'/admin'"
+                width="100">Admin</v-btn></v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-logout" @click="logout">Sign
+                Out</v-btn></v-list-item>
+          </v-list>
+          <v-list v-if="!isLogin">
+            <v-list-item>Hi Visitor</v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-login" :to="'/login'">Log
+                In</v-btn></v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-account-plus" :to="'/register'">Sign
+                up</v-btn></v-list-item>
+          </v-list>
+        </v-menu>
+      </div>
     </v-container>
   </v-app-bar>
   <v-main>
@@ -49,7 +86,6 @@ import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
 
 const createSnackbar = useSnackbar()
-
 const user = useUserStore()
 
 const { isLogin, isAdmin, avatar } = storeToRefs(user)
@@ -64,10 +100,10 @@ const navItems = computed(() => {
     { to: '/courses', text: 'Courses', icon: '', show: isLogin.value },
     { to: '/culture', text: 'Culture Corner', icon: '', show: true },
     { to: '/discussion', text: 'Discussion Board', icon: '', show: true },
-    { to: '/aboutus', text: 'About Us', icon: '', show: true },
-    { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
-    { to: '/login', text: 'Log In', icon: 'mdi-login', show: !isLogin.value },
-    { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !isLogin.value }
+    { to: '/aboutus', text: 'About Us', icon: '', show: true }
+    // { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
+    // { to: '/login', text: 'Log In', icon: 'mdi-login', show: !isLogin.value },
+    // { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !isLogin.value }
   ]
 })
 
