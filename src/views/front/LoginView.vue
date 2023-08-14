@@ -89,5 +89,5 @@ const submit = handleSubmit(async (values) => {
 })
 </script>
 
-<style lang="sass" scoped src="../../assets/pages/login.sass">
+<style lang="sass" scoped src="../../assets/pages/_login.sass">
 </style>

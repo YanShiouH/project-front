@@ -100,5 +100,5 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
-<style lang="sass" scoped src="../../assets/pages/register.sass">
+<style lang="sass" scoped src="../../assets/pages/_register.sass">
 </style>

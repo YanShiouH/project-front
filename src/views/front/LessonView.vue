@@ -64,5 +64,5 @@ const topic = ref('');
 
 </script>
 
-<style lang="sass" scoped src="../../assets/pages/courseEach.sass">
+<style lang="sass" scoped src="../../assets/pages/_courseEach.sass">
 </style>

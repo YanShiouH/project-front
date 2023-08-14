@@ -141,5 +141,5 @@ const sliced = computed(() => {
 
 const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
 </script>
-<style lang="sass" scoped src="../../assets/pages/board.sass">
+<style lang="sass" scoped src="../../assets/pages/_board.sass">
 </style>

@@ -39,5 +39,5 @@ const courses = ref([]);
 })()
 
 </script>
-<style lang="sass" scoped src="../../assets/pages/course.sass">
+<style lang="sass" scoped src="../../assets/pages/_course.sass">
 </style>

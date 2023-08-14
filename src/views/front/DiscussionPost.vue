@@ -120,5 +120,5 @@ const submit = handleSubmit(async (values) => {
 })
 </script>
 
-<style lang="sass" scoped src="../../assets/pages/comment.sass">
+<style lang="sass" scoped src="../../assets/pages/_comment.sass">
 </style>

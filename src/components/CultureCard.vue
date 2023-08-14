@@ -48,7 +48,7 @@ const props = defineProps({
 })
 const isLiked = computed(() => {
   if (!user.profile || !user.profile[0] || !user.profile[0].likedArticles) {
-    return false // Set a default value, e.g., not liked
+    return false
   }
   return user.profile[0].likedArticles.some(
     item => item.toString() === props._id)
@@ -65,7 +65,7 @@ const addLike = async () => {
         text: 'Article liked!',
         showCloseButton: false,
         snackbarProps: {
-          timeout: 2000,
+          timeout: 10000,
           color: 'green',
           location: 'bottom'
         }
