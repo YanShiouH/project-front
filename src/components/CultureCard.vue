@@ -1,5 +1,8 @@
 <template>
   <v-card>
+    <v-card-actions class="justify-end">
+      <v-btn :color="isLiked ? 'red' : 'primary'" @click="addLike" icon="mdi-heart"></v-btn>
+    </v-card-actions>
     <v-img :src="image" cover height="200"></v-img>
     <v-card-title>
       <router-link :to="'/culture/' + _id" class="text-primary text-decoration-none">
@@ -9,9 +12,6 @@
     <v-card-text>
       <pre>{{ content }}</pre>
     </v-card-text>
-    <v-card-actions>
-      <v-btn :color="isLiked ? 'red' : 'primary'" @click="addLike" icon="mdi-heart"></v-btn>
-    </v-card-actions>
   </v-card>
 </template>
 

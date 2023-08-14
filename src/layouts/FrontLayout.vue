@@ -50,14 +50,22 @@
             </v-btn>
           </template>
           <v-list v-if="isLogin">
-            <v-list-item>Welcome {{ user.account }}</v-list-item>
-            <v-list-item><v-btn variant="text">Liked Articles: {{ user.profile[0].likedArticles.length
-            }}</v-btn></v-list-item>
-            <v-list-item><v-btn variant="text">Current Lesson: {{ user.profile[0].currentLesson }}</v-btn></v-list-item>
-            <v-list-item><v-btn variant="text">Posted Posts: {{ user.profile[0].postedPosts.length
-            }}</v-btn></v-list-item>
-            <v-list-item v-if="isAdmin"><v-btn variant="text" prepend-icon="mdi-cog" :to="'/admin'"
-                width="100">Admin</v-btn></v-list-item>
+            <v-list-item class="text-center">
+              Welcome {{ user.account }}
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-heart">Liked Articles: {{
+              user.profile[0].likedArticles.length }}</v-btn>
+            </v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-school">Current Lesson: {{ user.profile[0].currentLesson
+            }}</v-btn>
+            </v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-pencil">Posted Posts: {{
+              user.profile[0].postedPosts.length }}</v-btn>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item v-if="isAdmin">
+              <v-btn variant="text" prepend-icon="mdi-cog" :to="'/admin'">Admin</v-btn></v-list-item>
             <v-list-item><v-btn variant="text" prepend-icon="mdi-logout" @click="logout">Sign
                 Out</v-btn></v-list-item>
           </v-list>
@@ -133,3 +141,7 @@ const logout = async () => {
   }
 }
 </script>
+<style scoped lang="sass">
+#user
+  font-family: Roboto, sans-serif
+</style>

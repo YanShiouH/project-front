@@ -1,28 +1,22 @@
 <template>
-  <v-card>
-    <v-card-title>
-      <router-link :to="'/discussion/' + _id" class="text-primary text-decoration-none">
+  <router-link :to="'/discussion/' + _id" class="text-decoration-none">
+    <v-card class="discussion-card">
+      <v-card-title class="text-primary">
         {{ title }}
-      </router-link>
-    </v-card-title>
-    <v-card-text>
-      <pre>{{ content }}</pre>
-    </v-card-text>
-    <v-card-text>
-      Poster:{{ account }}<br>
-      {{ new Date(date).toLocaleString('en-US') }}
-    </v-card-text>
-  </v-card>
+      </v-card-title>
+      <v-card-text>
+        {{ content }}
+      </v-card-text>
+      <v-card-text>
+        Poster: <b>{{ account }}</b><br>
+        {{ new Date(date).toLocaleString('en-US') }}
+      </v-card-text>
+    </v-card>
+  </router-link>
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
-import { useUserStore } from '@/store/user'
-import { apiAuth } from '@/plugins/axios'
-import { useSnackbar } from 'vuetify-use-dialog'
-
-const createSnackbar = useSnackbar()
-const user = useUserStore()
+import { defineProps } from 'vue'
 
 const props = defineProps({
   _id: {
@@ -46,41 +40,13 @@ const props = defineProps({
     default: () => ''
   }
 })
-// const isLiked = computed(() => {
-//   return user.profile[0].likedArticles.some(
-//     item => item.toString() === props._id)
-// })
-// const addLike = async () => {
-//   try {
-//     const { data } = await apiAuth.post('/users/like', {
-//       culture: props._id
-//     })
-//     console.log(data)
-//     user.profile = data.result
-//     if (user.profile[0].likedArticles.some(
-//       item => item.toString() === props._id)) {
-//       createSnackbar({
-//         text: 'Article liked!',
-//         showCloseButton: false,
-//         snackbarProps: {
-//           timeout: 2000,
-//           color: 'green',
-//           location: 'bottom'
-//         }
-//       })
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     createSnackbar({
-//       text: error.response.data.message,
-//       showCloseButton: false,
-//       snackbarProps: {
-//         timeout: 2000,
-//         color: 'red',
-//         location: 'bottom'
-//       }
-//     })
-//   }
-// }
 
 </script>
+<style scoped>
+.discussion-card:hover {
+  background-color: #f5f5f5;
+  /* Light gray background */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
+}
+</style>

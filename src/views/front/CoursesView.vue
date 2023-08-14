@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Courses</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12" md="6" lg="3" v-for="course in courses" :key="course._id">
+      <v-col cols="12" sm="6" lg="4" v-for="course in courses" :key="course._id">
         <CourseCard v-bind="course"></CourseCard>
       </v-col>
     </v-row>
@@ -39,3 +39,5 @@ const courses = ref([]);
 })()
 
 </script>
+<style lang="sass" scoped src="../../assets/pages/course.sass">
+</style>

@@ -1,13 +1,12 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Lesson {{ lessonNo }}: {{ topic }}</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12" sm="3" md="2" xl="1" v-for="(item, index) in courseContent" :key="index">
-        <CourseContent :content="item" style="border: 2px solid #FFD0D0
-"></CourseContent>
+      <v-col cols="12" sm="4" md="2" v-for="(item, index) in courseContent" :key="index">
+        <CourseContent :content="item"></CourseContent>
       </v-col>
     </v-row>
   </v-container>
@@ -64,3 +63,6 @@ const topic = ref('');
 })()
 
 </script>
+
+<style lang="sass" scoped src="../../assets/pages/courseEach.sass">
+</style>

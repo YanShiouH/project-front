@@ -1,32 +1,17 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Discussion Board</h1>
       </v-col>
       <v-divider></v-divider>
-      <v-col cols="12" v-if="isLogin">
-        <v-btn color="green" @click="openDialog">Add New Post</v-btn>
-        <!-- <v-data-table-server v-model:items-per-page="tableItemsPerPage" v-model:sort-by="tableSortBy"
-          v-model:page="tablePage" :items="tableProducts" :headers="tableHeaders" :loading="tableLoading"
-          :items-length="tableItemsLength" :search="tableSearch" hover @update:items-per-page="tableLoadItems"
-          @update:sort-by="tableLoadItems" @update:page="tableLoadItems">
-          <template #top>
-            <v-text-field label="Search" append-icon="mdi-magnify" @click:append="tableApplySearch"
-              @keydown.enter="tableApplySearch" v-model="tableSearch"></v-text-field>
-          </template>
-          <template #[`item.image`]="{ item }">
-            <v-img :src="item.raw.image" height="50px"></v-img>
-          </template>
-          <template #[`item.publish`]="{ item }">
-            <v-icon icon="mdi-check" v-if="item.raw.publish"></v-icon>
-          </template>
-          <template #[`item.edit`]="{ item }">
-            <v-btn icon="mdi-pencil" @click="tableEditItem(item.raw)" variant="text"></v-btn>
-          </template>
-        </v-data-table-server> -->
+      <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
+        <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
       </v-col>
-      <v-col cols="12" v-for="post in posts" :key="post._id">
+      <v-col cols="12">
+        <v-pagination v-model="currentPage" :length="totalPages"></v-pagination>
+      </v-col>
+      <v-col cols="12" v-for="post in sliced" :key="post._id">
         <PostCard v-bind="post"></PostCard>
       </v-col>
     </v-row>
@@ -44,14 +29,14 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red" @click="closeDialog" :loading="isSubmitting">Cancel</v-btn>
-          <v-btn color="green" type="submit" :loading="isSubmitting">Submit</v-btn>
+          <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
   </v-dialog>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { apiAuth, api } from '@/plugins/axios'
@@ -70,7 +55,8 @@ const posts = ref([]);
 (async () => {
   try {
     const { data } = await api.get('/discussion')
-    posts.value.push(...data.result)
+    const sortedData = data.result.sort((a, b) => new Date(b.date) - new Date(a.date))
+    posts.value.push(...sortedData)
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -143,4 +129,17 @@ const submit = handleSubmit(async (values) => {
     })
   }
 })
+
+const pageSize = ref(5)
+const currentPage = ref(1)
+
+const sliced = computed(() => {
+  const startIndex = (currentPage.value - 1) * pageSize.value
+  const endIndex = startIndex + pageSize.value
+  return posts.value.slice(startIndex, endIndex)
+})
+
+const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
 </script>
+<style lang="sass" scoped src="../../assets/pages/board.sass">
+</style>

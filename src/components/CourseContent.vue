@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ content }}
+      <!-- {{ content }} -->
+      <div v-html="formattedContent"></div>
     </v-card-title>
     <v-card-actions>
       <v-btn icon="mdi-volume-medium" color="primary" @click="startSpeaking"></v-btn>
@@ -10,7 +11,7 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { defineProps, computed } from 'vue'
 const props = defineProps({
   content: {
     type: String,
@@ -19,9 +20,14 @@ const props = defineProps({
 })
 
 const audio = new Audio()
-audio.src = new URL('/tts/' + props.content, import.meta.env.VITE_API)
+audio.src = new URL('/tts/' + props.content.split('<br>')[0], import.meta.env.VITE_API)
 
 const startSpeaking = async () => {
   audio.play()
 }
+
+const formattedContent = computed(() => {
+  // Replace \n with <br> tags
+  return props.content.replace(/\n/g, '<br>')
+})
 </script>

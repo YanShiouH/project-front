@@ -1,12 +1,8 @@
 <template>
-  <v-card>
+  <v-card variant="text" class="bgColor">
     <v-card-text>
-      {{ account }}
-    </v-card-text>
-    <v-card-text>
-      <pre>{{ content }}</pre>
-    </v-card-text>
-    <v-card-text>
+      <b>{{ account }}</b><br>
+      {{ content }}<br>
       {{ new Date(date).toLocaleString('en-US') }}
     </v-card-text>
   </v-card>
@@ -14,12 +10,6 @@
 
 <script setup>
 import { defineProps } from 'vue'
-import { useUserStore } from '@/store/user'
-import { apiAuth } from '@/plugins/axios'
-import { useSnackbar } from 'vuetify-use-dialog'
-
-const createSnackbar = useSnackbar()
-const user = useUserStore()
 
 const props = defineProps({
   _id: {
@@ -39,41 +29,9 @@ const props = defineProps({
     default: () => ''
   }
 })
-// const isLiked = computed(() => {
-//   return user.profile[0].likedArticles.some(
-//     item => item.toString() === props._id)
-// })
-// const addLike = async () => {
-//   try {
-//     const { data } = await apiAuth.post('/users/like', {
-//       culture: props._id
-//     })
-//     console.log(data)
-//     user.profile = data.result
-//     if (user.profile[0].likedArticles.some(
-//       item => item.toString() === props._id)) {
-//       createSnackbar({
-//         text: 'Article liked!',
-//         showCloseButton: false,
-//         snackbarProps: {
-//           timeout: 2000,
-//           color: 'green',
-//           location: 'bottom'
-//         }
-//       })
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     createSnackbar({
-//       text: error.response.data.message,
-//       showCloseButton: false,
-//       snackbarProps: {
-//         timeout: 2000,
-//         color: 'red',
-//         location: 'bottom'
-//       }
-//     })
-//   }
-// }
 
 </script>
+<style scoped lang="sass">
+.bgColor
+  background-color: rgba(255, 111, 97, 0.1)
+  </style>

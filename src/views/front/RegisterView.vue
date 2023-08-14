@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-512">
       <v-col cols="12">
         <h1>Sign-up</h1>
       </v-col>
@@ -16,9 +16,12 @@
           <v-text-field v-model="passwordConfirm.value.value" :error-messages="passwordConfirm.errorMessage.value"
             label="Confirm Password" counter max-length="20" type="password"></v-text-field>
           <div class="text-center">
-            <v-btn type="submit" color="green" text-center>Sign Up</v-btn>
+            <v-btn type="submit" color="primary" text-center>Sign Up</v-btn>
           </div>
         </v-form>
+      </v-col>
+      <v-col cols="12" class="text-center">
+        Already have a Taealam Account?<router-link to="/login">Log In</router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -97,3 +100,5 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+<style lang="sass" scoped src="../../assets/pages/register.sass">
+</style>

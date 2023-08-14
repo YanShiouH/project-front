@@ -18,13 +18,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
-import { useUserStore } from '@/store/user'
-import { apiAuth } from '@/plugins/axios'
-import { useSnackbar } from 'vuetify-use-dialog'
-
-const createSnackbar = useSnackbar()
-const user = useUserStore()
+import { defineProps } from 'vue'
 
 const props = defineProps({
   _id: {

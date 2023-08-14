@@ -1,41 +1,27 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-1080">
       <v-col cols="12">
-        Poster:{{ posts.account }}<br>
+        Poster: {{ posts.account }}<br>
         {{ new Date(posts.date).toLocaleString('en-US') }}
         <h1>{{ posts.title }}</h1>
-        <pre>{{ posts.content }}</pre>
+        {{ posts.content }}
       </v-col>
       <v-col cols="12" v-if="isLogin">
-        <v-btn color="green" @click="openDialog">Add New Comment</v-btn>
-        <!-- <v-form :disabled="isSubmitting" @submit.prevent="submit">
-          <v-text-field v-model.number="quantity.value.value" type="number" label="數量" min="0"
-            :error-messages="quantity.errorMessage.value"></v-text-field>
-          <v-btn type="submit" color="green">加入購物車</v-btn>
-        </v-form> -->
+        <v-form :disabled="isSubmitting" @submit.prevent="submit">
+          <v-textarea label="Add a Comment" v-model="content.value.value" :error-messages="content.errorMessage.value"
+            variant="outlined" clearable rows="2"></v-textarea>
+          <!-- <v-btn color=" secondary" :loading="isSubmitting">Cancel</v-btn> -->
+          <div class="d-flex justify-end">
+            <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
+          </div>
+        </v-form>
       </v-col>
-      <v-col cols="12" md="6" lg="3" v-for="comment in comments" :key="comment._id">
+      <v-col cols="12" v-for="comment in comments" :key="comment._id">
         <CommentCard v-bind="comment"></CommentCard>
       </v-col>
     </v-row>
   </v-container>
-  <v-dialog persistent v-model="dialog" width="500px">
-    <v-form :disabled="isSubmitting" @submit.prevent="submit">
-      <v-card>
-        <v-card-title>Add New Comment</v-card-title>
-        <v-card-text>
-          <v-textarea label="Content" v-model="content.value.value"
-            :error-messages="content.errorMessage.value"></v-textarea>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red" @click="closeDialog" :loading="isSubmitting">Cancel</v-btn>
-          <v-btn color="green" type="submit" :loading="isSubmitting">Submit</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-form>
-  </v-dialog>
 </template>
 
 <script setup>
@@ -88,17 +74,6 @@ const comments = ref([]);
   }
 })()
 
-const dialog = ref(false)
-const dialogId = ref('')
-const openDialog = () => {
-  dialogId.value = ''
-  dialog.value = true
-}
-const closeDialog = () => {
-  dialog.value = false
-  resetForm()
-}
-
 // 表單
 const schema = yup.object({
   content: yup.string().required('Content is required')
@@ -128,7 +103,7 @@ const submit = handleSubmit(async (values) => {
         location: 'bottom'
       }
     })
-    closeDialog()
+    resetForm()
     const { data } = await api.get('/discussion/' + route.params.id)
     comments.value = [...data.commentResult]
   } catch (error) {
@@ -144,3 +119,6 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style lang="sass" scoped src="../../assets/pages/comment.sass">
+</style>

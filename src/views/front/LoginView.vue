@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="max-width-512">
       <v-col cols="12">
         <h1>Login</h1>
       </v-col>
@@ -12,9 +12,12 @@
           <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="Password"
             counter maxlength="20" type="password"></v-text-field>
           <div class="text-center">
-            <v-btn type="submit" color="green">Log In</v-btn>
+            <v-btn type="submit" color="primary">Log In</v-btn>
           </div>
         </v-form>
+      </v-col>
+      <v-col cols="12" class="text-center">
+        Need a Taealam account? <router-link to="/register">Sign Up</router-link>
       </v-col>
     </v-row>
   </v-container>
@@ -85,3 +88,6 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style lang="sass" scoped src="../../assets/pages/login.sass">
+</style>
