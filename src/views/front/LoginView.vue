@@ -17,7 +17,7 @@
         </v-form>
       </v-col>
       <v-col cols="12" class="text-center">
-        Need a Taealam account? <router-link to="/register">Sign Up</router-link>
+        Need a Taealam account? <router-link to="/register" class="register-link"> Sign Up</router-link>
       </v-col>
     </v-row>
   </v-container>

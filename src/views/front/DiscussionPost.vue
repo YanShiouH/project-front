@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="max-width-1080">
+    <v-row class="max-width-1080 bdc">
       <v-col cols="12">
         Poster: {{ posts.account }}<br>
         {{ new Date(posts.date).toLocaleString('en-US') }}
@@ -16,6 +16,10 @@
             <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
           </div>
         </v-form>
+      </v-col>
+      <v-col cols="12" v-if="!isLogin" class="text-center">
+        <p class="login-message">Please <router-link to="/login" class="login-link">log in</router-link> to leave a
+          comment.</p>
       </v-col>
       <v-col cols="12" v-for="comment in comments" :key="comment._id">
         <CommentCard v-bind="comment"></CommentCard>

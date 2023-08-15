@@ -18,7 +18,7 @@
 <script setup>
 import { defineProps } from 'vue'
 
-const props = defineProps({
+defineProps({
   _id: {
     type: String,
     default: () => ''

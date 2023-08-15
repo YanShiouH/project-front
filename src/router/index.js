@@ -38,6 +38,16 @@ const routes = [
         }
       },
       {
+        path: 'profile',
+        name: 'Profile',
+        component: () => import(/* webpackChunkName: "profile" */ '@/views/front/ProfileView.vue'),
+        meta: {
+          title: 'Taealam | Profile',
+          login: true,
+          admin: false
+        }
+      },
+      {
         path: 'culture/:id',
         name: 'Culture Article',
         component: () => import(/* webpackChunkName: "cultureArticle" */ '@/views/front/CultureArticle.vue'),

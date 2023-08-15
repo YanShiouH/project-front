@@ -1,16 +1,9 @@
 <template>
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
-      <v-btn variant="text">
+      <v-btn variant="text" class="v-btn__content" :to="isLogin ? '/profile' : '/login'">
         <v-avatar><v-img :src="avatar"></v-img></v-avatar>
       </v-btn>
-      <!-- <v-list-item>
-        <v-avatar><v-img :src="avatar"></v-img></v-avatar></v-list-item> -->
-      <!-- <v-list-item>
-        <template #prepend>
-          <img :src="avatar" alt="Avatar">
-        </template>
-        <v-list-item-title>Profile</v-list-item-title></v-list-item> -->
       <template v-for="navItem in navItems" :key="navItem.to">
         <v-list-item v-if="navItem.show" :to="navItem.to">
           <template #prepend>
@@ -24,6 +17,16 @@
         </template>
         <v-list-item-title>Sign Out</v-list-item-title>
       </v-list-item>
+      <v-list-item v-if="!isLogin" :to="'/login'">
+        <template #prepend>
+          <v-icon icon="mdi-login"></v-icon>
+        </template>
+        <v-list-item-title>Log In</v-list-item-title></v-list-item>
+      <v-list-item v-if="!isLogin" :to="'/register'">
+        <template #prepend>
+          <v-icon icon="mdi-account-plus"></v-icon>
+        </template>
+        <v-list-item-title>Sign up</v-list-item-title></v-list-item>
     </v-list>
   </v-navigation-drawer>
   <v-app-bar color="primary">
@@ -54,15 +57,7 @@
               Welcome {{ user.account }}
             </v-list-item>
             <v-divider></v-divider>
-            <v-list-item><v-btn variant="text" prepend-icon="mdi-heart">Liked Articles: {{
-              user.profile[0].likedArticles.length }}</v-btn>
-            </v-list-item>
-            <v-list-item><v-btn variant="text" prepend-icon="mdi-school">Current Lesson: {{ user.profile[0].currentLesson
-            }}</v-btn>
-            </v-list-item>
-            <v-list-item><v-btn variant="text" prepend-icon="mdi-pencil">Posted Posts: {{
-              user.profile[0].postedPosts.length }}</v-btn>
-            </v-list-item>
+            <v-list-item><v-btn variant="text" prepend-icon="mdi-account" :to="'/profile'">Profile</v-btn></v-list-item>
             <v-divider></v-divider>
             <v-list-item v-if="isAdmin">
               <v-btn variant="text" prepend-icon="mdi-cog" :to="'/admin'">Admin</v-btn></v-list-item>
@@ -141,7 +136,5 @@ const logout = async () => {
   }
 }
 </script>
-<style scoped lang="sass">
-#user
-  font-family: Roboto, sans-serif
+<style scoped lang="sass" src=".././assets/layouts/_front.sass">
 </style>

@@ -21,7 +21,7 @@
         </v-form>
       </v-col>
       <v-col cols="12" class="text-center">
-        Already have a Taealam Account?<router-link to="/login">Log In</router-link>
+        Already have a Taealam Account?<router-link to="/login" class="login-link"> Log In</router-link>
       </v-col>
     </v-row>
   </v-container>
