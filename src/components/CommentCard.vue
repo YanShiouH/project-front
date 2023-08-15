@@ -33,5 +33,5 @@ defineProps({
 </script>
 <style scoped lang="sass">
 .bgColor
-
+  background-color: rgba(255, 111, 97, 0.1)
   </style>
