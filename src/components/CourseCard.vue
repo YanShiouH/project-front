@@ -1,15 +1,12 @@
 <template>
-  <v-card>
-    <v-card-text>
-
-    </v-card-text>
-    <v-card-title>
+  <v-card class="card">
+    <v-card-title class="topic-title text-center">
       Lesson {{ lessonNo }}: {{ topic }}
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="lesson-description">
       {{ description }}
     </v-card-text>
-    <v-card-actions>
+    <v-card-actions class="d-flex justify-center">
       <router-link :to="'/courses/' + _id" class="text-primary text-decoration-none">
         <v-btn color="primary">Get Started</v-btn>
       </router-link>
@@ -48,3 +45,4 @@ defineProps({
 })
 
 </script>
+<style scoped src=".././assets/components/_course.sass"></style>

@@ -1,8 +1,8 @@
 <template>
-  <v-card>
+  <v-card class="card">
     <v-card-title>
       <!-- {{ content }} -->
-      <div v-html="formattedContent"></div>
+      <div v-html="formattedContent" class="title-card"></div>
     </v-card-title>
     <v-card-actions>
       <v-btn icon="mdi-volume-medium" color="primary" @click="startSpeaking"></v-btn>
@@ -31,3 +31,5 @@ const formattedContent = computed(() => {
   return props.content.replace(/\n/g, '<br>')
 })
 </script>
+
+<style scope lang="sass" src=".././assets/components/_courseContent.sass"></style>
