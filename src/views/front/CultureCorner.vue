@@ -39,5 +39,3 @@ const culture = ref([]);
 })()
 
 </script>
-<style lang="sass" scoped src="../../assets/pages/_culture.sass">
-</style>

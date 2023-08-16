@@ -36,7 +36,7 @@
             <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
               <v-card-title>Liked Articles</v-card-title>
               <v-card-text>
-                <span class="highlight-number">{{ user.profile[0].likedArticles.length }}</span><br>
+                <span class="highlight-number">{{ user.profile[0]?.likedArticles?.length || 0 }}</span><br>
                 articles liked</v-card-text>
             </v-card>
           </v-col>
@@ -44,16 +44,24 @@
             <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
               <v-card-title>Current Lesson</v-card-title>
               <v-card-text>
+                <template v-if="user.profile[0] && user.profile[0].currentLesson !== null">
+                  lesson<br>
+                  <span class="highlight-number">{{ user.profile[0].currentLesson }}</span></template>
+                <template v-else>
+                  <p>Start your learning journey now! Choose a lesson to begin.</p>
+                </template>
+              </v-card-text>
+              <!-- <v-card-text>
                 lesson<br>
                 <span class="highlight-number">{{ user.profile[0].currentLesson }}</span>
-              </v-card-text>
+              </v-card-text> -->
             </v-card>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
             <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
               <v-card-title>Posted Posts</v-card-title>
               <v-card-text>
-                <span class="highlight-number">{{ user.profile[0].postedPosts.length }}</span><br> posts posted
+                <span class="highlight-number">{{ user.profile[0]?.postedPosts?.length || 0 }}</span><br> posts posted
               </v-card-text>
             </v-card>
           </v-col>
@@ -113,5 +121,6 @@ const selectedTab = ref('profile')
   background-color: #f8f8f8
   color: #333
   margin-bottom: 10px
-
+p
+  height: 53px
 </style>

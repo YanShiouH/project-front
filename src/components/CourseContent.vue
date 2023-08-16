@@ -27,7 +27,6 @@ const startSpeaking = async () => {
 }
 
 const formattedContent = computed(() => {
-  // Replace \n with <br> tags
   return props.content.replace(/\n/g, '<br>')
 })
 </script>

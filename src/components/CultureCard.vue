@@ -10,7 +10,7 @@
       </router-link>
     </v-card-title>
     <v-card-text>
-      <pre>{{ content }}</pre>
+      {{ content }}
     </v-card-text>
   </v-card>
 </template>

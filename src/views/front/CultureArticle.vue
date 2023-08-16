@@ -1,13 +1,14 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="6">
-        <v-img :src="culture.image"></v-img>
-      </v-col>
-      <v-col cols="6">
+    <v-row class="max-width-1080">
+      <v-col cols="12" class="text-center">
         <h1>{{ culture.title }}</h1>
       </v-col>
-      <v-col cols="6">
+      <v-col cols="12">
+        <v-img :src="culture.image" :aspect-ratio="16 / 9"></v-img>
+      </v-col>
+
+      <v-col cols="12">
         <pre>{{ culture.content }}</pre>
       </v-col>
     </v-row>
