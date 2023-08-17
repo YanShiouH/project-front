@@ -11,6 +11,11 @@
           </template>
           <v-list-item-title>{{ navItem.text }}</v-list-item-title></v-list-item>
       </template>
+      <v-list-item v-if="isLogin" :to="'/admin'">
+        <template #prepend>
+          <v-icon icon="mdi-cog"></v-icon>
+        </template>
+        <v-list-item-title>Admin</v-list-item-title></v-list-item>
       <v-list-item v-if="isLogin" @click="logout">
         <template #prepend>
           <v-icon icon="mdi-logout"></v-icon>

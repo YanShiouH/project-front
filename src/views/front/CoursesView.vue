@@ -4,7 +4,7 @@
       <v-col cols="12">
         <h1 class="text-center">Courses</h1>
       </v-col>
-      <v-divider></v-divider>
+      <!-- <v-divider></v-divider> -->
       <v-col cols="12" sm="6" lg="4" v-for="course in courses" :key="course._id">
         <CourseCard v-bind="course"></CourseCard>
       </v-col>

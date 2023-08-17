@@ -4,12 +4,12 @@
       <v-col cols="12">
         <h1 class="text-center">Discussion Board</h1>
       </v-col>
-      <v-divider></v-divider>
-      <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
-        <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
-      </v-col>
+      <!-- <v-divider></v-divider> -->
       <v-col cols="12">
         <v-pagination v-model="currentPage" :length="totalPages"></v-pagination>
+      </v-col>
+      <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
+        <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
       </v-col>
       <v-col cols="12" v-for="post in sliced" :key="post._id">
         <PostCard v-bind="post"></PostCard>
@@ -28,7 +28,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="red" @click="closeDialog" :loading="isSubmitting">Cancel</v-btn>
+          <v-btn color="error" @click="closeDialog" :loading="isSubmitting">Cancel</v-btn>
           <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
         </v-card-actions>
       </v-card>

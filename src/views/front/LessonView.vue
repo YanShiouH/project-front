@@ -4,7 +4,7 @@
       <v-col cols="12">
         <h1 class="text-center">Lesson {{ lessonNo }}: {{ topic }}</h1>
       </v-col>
-      <v-divider></v-divider>
+      <!-- <v-divider></v-divider> -->
       <v-col cols="12" sm="4" md="2" v-for="(item, index) in courseContent" :key="index">
         <CourseContent :content="item"></CourseContent>
       </v-col>

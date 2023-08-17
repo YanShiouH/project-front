@@ -1,7 +1,7 @@
 <template>
   <v-card>
-    <v-card-actions class="justify-end">
-      <v-btn :color="isLiked ? 'red' : 'primary'" @click="addLike" icon="mdi-heart"></v-btn>
+    <v-card-actions class="transform">
+      <v-btn class="btn-style" :color="isLiked ? 'red' : 'accent'" @click="addLike" icon="mdi-heart"></v-btn>
     </v-card-actions>
     <router-link :to="'/culture/' + _id" class=" text-decoration-none">
       <v-img :src="image" cover height="200"></v-img>
@@ -9,7 +9,7 @@
         {{ title }}
       </v-card-title>
       <v-card-text class="text-black text-adjust">
-        {{ content }}
+        {{ formattedContent(content) }}
       </v-card-text>
     </router-link>
   </v-card>
@@ -65,7 +65,7 @@ const addLike = async () => {
         text: 'Article liked!',
         showCloseButton: false,
         snackbarProps: {
-          timeout: 10000,
+          timeout: 2000,
           color: 'green',
           location: 'bottom'
         }
@@ -84,5 +84,13 @@ const addLike = async () => {
     })
   }
 }
+const formattedContent = (content) => {
+  const processedContent = content
+    .replace(/<h2>/g, '')
+    .replace(/<\/h2>/g, '')
+    .replace(/<img[^>]*>/g, '')
+  return processedContent
+}
+
 </script>
 <style scope lang="sass" src="../assets/components/_cultureCard.sass"></style>
