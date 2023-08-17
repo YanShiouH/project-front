@@ -31,5 +31,5 @@ defineProps({
 })
 
 </script>
-<style scoped lang="sass" src=".././assets/components/_comment.sass">
+<style scoped lang="sass" src=".././assets/components/_commentCard.sass">
   </style>

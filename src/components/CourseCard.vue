@@ -1,6 +1,6 @@
 <template>
-  <v-card class="card">
-    <v-card-title class="topic-title text-center">
+  <v-card>
+    <v-card-title class="text-center">
       Lesson {{ lessonNo }}: {{ topic }}
     </v-card-title>
     <v-card-text class="lesson-description">
@@ -45,4 +45,4 @@ defineProps({
 })
 
 </script>
-<style scoped src=".././assets/components/_course.sass"></style>
+<style scoped src=".././assets/components/_courseCard.sass"></style>

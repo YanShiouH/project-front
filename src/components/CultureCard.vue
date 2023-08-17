@@ -3,15 +3,15 @@
     <v-card-actions class="justify-end">
       <v-btn :color="isLiked ? 'red' : 'primary'" @click="addLike" icon="mdi-heart"></v-btn>
     </v-card-actions>
-    <v-img :src="image" cover height="200"></v-img>
-    <v-card-title>
-      <router-link :to="'/culture/' + _id" class="text-primary text-decoration-none">
+    <router-link :to="'/culture/' + _id" class=" text-decoration-none">
+      <v-img :src="image" cover height="200"></v-img>
+      <v-card-title class="text-primary white-space">
         {{ title }}
-      </router-link>
-    </v-card-title>
-    <v-card-text>
-      {{ content }}
-    </v-card-text>
+      </v-card-title>
+      <v-card-text class="text-black text-adjust">
+        {{ content }}
+      </v-card-text>
+    </router-link>
   </v-card>
 </template>
 
@@ -84,5 +84,5 @@ const addLike = async () => {
     })
   }
 }
-
 </script>
+<style scope lang="sass" src="../assets/components/_cultureCard.sass"></style>

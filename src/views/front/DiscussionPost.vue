@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row class="max-width-1080 bdc">
+    <v-row class="max-width-1080">
       <v-col cols="12">
         Poster: {{ posts.account }}<br>
         {{ new Date(posts.date).toLocaleString('en-US') }}
@@ -11,7 +11,6 @@
         <v-form :disabled="isSubmitting" @submit.prevent="submit">
           <v-textarea label="Add a Comment" v-model="content.value.value" :error-messages="content.errorMessage.value"
             variant="outlined" clearable rows="2"></v-textarea>
-          <!-- <v-btn color=" secondary" :loading="isSubmitting">Cancel</v-btn> -->
           <div class="d-flex justify-end">
             <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
           </div>
@@ -124,5 +123,5 @@ const submit = handleSubmit(async (values) => {
 })
 </script>
 
-<style lang="sass" scoped src="../../assets/pages/_comment.sass">
+<style lang="sass" scoped src="../../assets/pages/_discussionPost.sass">
 </style>

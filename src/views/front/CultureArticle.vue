@@ -7,9 +7,8 @@
       <v-col cols="12">
         <v-img :src="culture.image" :aspect-ratio="16 / 9"></v-img>
       </v-col>
-
       <v-col cols="12">
-        <pre>{{ culture.content }}</pre>
+        <div v-html="formattedContent"></div>
       </v-col>
     </v-row>
   </v-container>
@@ -20,7 +19,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { api } from '@/plugins/axios'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
@@ -59,4 +58,12 @@ const culture = ref({
     })
   }
 })()
+
+const formattedContent = computed(() => {
+  const processedContent = culture.value.content
+    .replace(/\n/g, '<br>')
+  // .replace(/<b>/g, '<strong>')
+  // .replace(/<\/b>/g, '</strong>')
+  return processedContent
+})
 </script>

@@ -2,7 +2,7 @@
   <v-container>
     <v-row class="max-width-512">
       <v-col cols="12">
-        <h1>Login</h1>
+        <h1 class="text-center">Login</h1>
       </v-col>
       <v-divider></v-divider>
       <v-col cols="12">
