@@ -11,20 +11,38 @@
     </v-row>
   </v-container>
 </template>
+
 <script setup>
 import { api } from '@/plugins/axios'
-import { ref } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
 import CultureCard from '@/components/CultureCard.vue'
+import { gsap } from 'gsap'
 
 const createSnackbar = useSnackbar()
 
-const culture = ref([]);
+const culture = ref([])
 
-(async () => {
+onMounted(async () => {
   try {
     const { data } = await api.get('/culture')
     culture.value.push(...data.result)
+    await nextTick()
+    gsap.set('.culture-card', {
+      boxShadow: '0 0 20px rgba(0,0,0,0.3)'
+    })
+    document.querySelectorAll('.culture-card').forEach((card, index) => {
+      const tween = gsap.to(card, {
+        y: -30,
+        boxShadow: '0 30px 30px rgba(0,0,0,0.2)',
+        paused: true,
+        duration: 0.5,
+        ease: 'back.inOut(5)'
+      })
+
+      card.addEventListener('mouseenter', () => tween.play())
+      card.addEventListener('mouseleave', () => tween.reverse())
+    })
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -36,7 +54,8 @@ const culture = ref([]);
       }
     })
   }
-})()
+})
 
 </script>
+
 <style scope lang="sass" src="../../assets/pages/_cultureCorner.sass"></style>

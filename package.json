@@ -16,6 +16,7 @@
     "core-js": "^3.29.0",
     "emailjs-com": "^3.2.0",
     "google-tts-api": "^2.0.2",
+    "gsap": "^3.12.2",
     "pinia": "^2.0.0",
     "pinia-plugin-persistedstate": "^3.2.0",
     "roboto-fontface": "*",
