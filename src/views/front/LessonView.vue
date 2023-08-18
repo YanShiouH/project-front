@@ -5,7 +5,8 @@
         <h1 class="text-center">Lesson {{ lessonNo }}: {{ topic }}</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
-      <v-col cols="12" sm="4" md="2" v-for="(item, index) in courseContent" :key="index">
+      <v-col cols="12" sm="4" md="2" v-for="(item, index) in courseContent" :key="index" data-aos="fade-down"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)">
         <CourseContent :content="item"></CourseContent>
       </v-col>
     </v-row>
@@ -18,6 +19,10 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import CourseContent from '@/components/CourseContent.vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
 
 const createSnackbar = useSnackbar()
 const user = useUserStore()
@@ -61,5 +66,7 @@ const topic = ref('');
     })
   }
 })()
-
+const calculateDelay = (index) => {
+  return index * 50
+}
 </script>

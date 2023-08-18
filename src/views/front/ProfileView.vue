@@ -32,7 +32,7 @@
         </v-row>
         <v-row v-show="selectedTab === 'activity'" class="max-width-835">
           <v-col cols="12" sm="6" lg="4">
-            <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
+            <v-card class="text-center" variant="elevated">
               <v-card-title>Liked Articles</v-card-title>
               <v-card-text>
                 <span class="highlight-number">{{ user.profile[0]?.likedArticles?.length || 0 }}</span><br>
@@ -40,7 +40,7 @@
             </v-card>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
-            <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
+            <v-card class="text-center" variant="elevated">
               <v-card-title>Current Lesson</v-card-title>
               <v-card-text>
                 <template v-if="user.profile[0] && user.profile[0].currentLesson !== null">
@@ -54,7 +54,7 @@
             </v-card>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
-            <v-card class="text-center" variant="text" style="border:rgba(0, 150, 136, 0.5) solid 1px;">
+            <v-card class="text-center" variant="elevated">
               <v-card-title>Posted Posts</v-card-title>
               <v-card-text>
                 <span class="highlight-number">{{ user.profile[0]?.postedPosts?.length || 0 }}</span><br> posts posted

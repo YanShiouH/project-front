@@ -5,7 +5,8 @@
         <h1 class="text-center">Courses</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
-      <v-col cols="12" sm="6" lg="4" v-for="course in courses" :key="course._id">
+      <v-col cols="12" sm="6" lg="4" v-for="(course, index) in courses" :key="course._id" data-aos="fade-down"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="0">
         <CourseCard v-bind="course"></CourseCard>
       </v-col>
     </v-row>
@@ -16,6 +17,10 @@ import { api } from '@/plugins/axios'
 import { ref } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
 import CourseCard from '@/components/CourseCard.vue'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
 
 const createSnackbar = useSnackbar()
 
@@ -37,5 +42,8 @@ const courses = ref([]);
     })
   }
 })()
+const calculateDelay = (index) => {
+  return index * 200
+}
 
 </script>

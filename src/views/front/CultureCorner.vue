@@ -5,8 +5,12 @@
         <h1 class="text-center">Culture Corner</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
-      <v-col cols="12" sm="6" lg="4" v-for="cultureItem in culture" :key="cultureItem._id">
+      <v-col cols="12" sm="6" lg="4" v-for="(cultureItem, index) in sliced" :key="cultureItem._id" data-aos="zoom-out"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <CultureCard v-bind="cultureItem" class="culture-card"></CultureCard>
+      </v-col>
+      <v-col cols="12">
+        <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -14,10 +18,14 @@
 
 <script setup>
 import { api } from '@/plugins/axios'
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, computed } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
 import CultureCard from '@/components/CultureCard.vue'
 import { gsap } from 'gsap'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
 
 const createSnackbar = useSnackbar()
 
@@ -55,7 +63,19 @@ onMounted(async () => {
     })
   }
 })
+const pageSize = ref(15)
+const currentPage = ref(1)
 
+const sliced = computed(() => {
+  const startIndex = (currentPage.value - 1) * pageSize.value
+  const endIndex = startIndex + pageSize.value
+  return culture.value.slice(startIndex, endIndex)
+})
+
+const totalPages = computed(() => Math.ceil(culture.value.length / pageSize.value))
+const calculateDelay = (index) => {
+  return index * 200
+}
 </script>
 
 <style scope lang="sass" src="../../assets/pages/_cultureCorner.sass"></style>

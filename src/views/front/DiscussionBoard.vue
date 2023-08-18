@@ -5,14 +5,15 @@
         <h1 class="text-center">Discussion Board</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
-      <v-col cols="12">
-        <v-pagination v-model="currentPage" :length="totalPages"></v-pagination>
-      </v-col>
       <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
         <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
       </v-col>
-      <v-col cols="12" v-for="post in sliced" :key="post._id">
+      <v-col cols="12" v-for="(post, index) in sliced" :key="post._id" data-aos="fade-down" data-aos-duration="1200"
+        :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <PostCard v-bind="post"></PostCard>
+      </v-col>
+      <v-col cols="12">
+        <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
       </v-col>
     </v-row>
   </v-container>
@@ -35,6 +36,7 @@
     </v-form>
   </v-dialog>
 </template>
+
 <script setup>
 import { ref, computed } from 'vue'
 import { useForm, useField } from 'vee-validate'
@@ -44,6 +46,10 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import PostCard from '@/components/PostCard.vue'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+AOS.init()
 
 const user = useUserStore()
 
@@ -140,4 +146,8 @@ const sliced = computed(() => {
 })
 
 const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
+
+const calculateDelay = (index) => {
+  return index * 200
+}
 </script>
