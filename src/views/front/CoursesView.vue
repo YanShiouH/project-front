@@ -6,7 +6,7 @@
       </v-col>
       <!-- <v-divider></v-divider> -->
       <v-col cols="12" sm="6" lg="4" v-for="(course, index) in courses" :key="course._id" data-aos="fade-down"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="0">
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <CourseCard v-bind="course"></CourseCard>
       </v-col>
     </v-row>

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@boindil/vue-file-agent-next": "^1.0.5",
+    "@emailjs/browser": "^3.11.0",
     "@mdi/font": "7.0.96",
     "@vueuse/core": "^10.3.0",
     "aos": "^3.0.0-beta.6",
@@ -24,6 +25,7 @@
     "validator": "^13.9.0",
     "vee-validate": "^4.11.1",
     "vue": "^3.2.0",
+    "vue-preloader": "^1.1.2",
     "vue-router": "^4.0.0",
     "vuetify": "^3.0.0",
     "vuetify-use-dialog": "^0.6.0",

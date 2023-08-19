@@ -5,8 +5,8 @@
         <h1 class="text-center">Lesson {{ lessonNo }}: {{ topic }}</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
-      <v-col cols="12" sm="4" md="2" v-for="(item, index) in courseContent" :key="index" data-aos="fade-down"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)">
+      <v-col cols="12" sm="4" lg="3" v-for="(item, index) in courseContent" :key="index" data-aos="fade-down"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <CourseContent :content="item"></CourseContent>
       </v-col>
     </v-row>

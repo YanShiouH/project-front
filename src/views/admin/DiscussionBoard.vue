@@ -56,8 +56,8 @@ const tableItemsPerPage = ref(5)
 // 目前表格設定排序
 const tableSortBy = ref([
   {
-    key: 'name',
-    order: 'asc'
+    key: 'status',
+    order: 'desc'
   }
 ])
 // 目前表格頁碼

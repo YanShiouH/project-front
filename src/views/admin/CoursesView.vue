@@ -72,7 +72,7 @@ const tableItemsPerPage = ref(5)
 // 目前表格設定排序
 const tableSortBy = ref([
   {
-    key: 'title',
+    key: 'lessonNo',
     order: 'asc'
   }
 ])
@@ -108,7 +108,7 @@ const tableLoadItems = async () => {
       params: {
         page: tablePage.value,
         itemsPerPage: tableItemsPerPage.value,
-        sortBy: tableSortBy.value[0]?.key || 'title',
+        sortBy: tableSortBy.value[0]?.key || 'lessonNo',
         sortOrder: tableSortBy.value[0]?.order || 'asc',
         search: tableSearch.value
       }
@@ -222,9 +222,6 @@ const submit = handleSubmit(async (values) => {
 })
 </script>
 
-<style>
-.dialog-card {
-  max-height: 80vh !important;
-  overflow-y: auto !important;
-}
+<style lang="sass" scope src="../../assets/pages/_adminCourses.sass">
+
 </style>
