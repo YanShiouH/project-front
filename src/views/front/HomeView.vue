@@ -5,50 +5,54 @@
     <div class="text-center welcome text-white" data-aos="fade-right" data-aos-duration="2000">
       <h1>Welcome to Taealam!</h1>
       <p>Start your journey to learn Arabic with us</p>
-      <v-btn color="secondary" size="large" rounded="lg" :to="isLogin ? '/courses' : '/login'">Get Started</v-btn>
+      <v-btn color="secondary" size="large" :to="isLogin ? '/courses' : '/login'">Get Started</v-btn>
     </div>
   </section>
   <v-container class="features">
     <v-row class="max-width-1080">
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200"
+          data-aos-offset="-100">
           <v-card-title class="text-center">
-            <v-icon color="secondary" size="80">mdi-school</v-icon>
+            <v-icon color="secondary" size="60">mdi-school</v-icon>
             <h2 class="title">Interactive Lessons</h2>
           </v-card-title>
           <v-card-text>
             Engaging and interactive lessons to help you learn Arabic effectively.
           </v-card-text>
           <v-card-actions class="justify-center d-flex">
-            <v-btn color="secondary" :to="isLogin ? '/courses' : '/login'" size="x-large">Learn More</v-btn>
+            <v-btn variant="elevated" color="secondary" :to="isLogin ? '/courses' : '/login'">Learn
+              More</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="400">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="400"
+          data-aos-offset="-100">
           <v-card-title class="text-center">
-            <v-icon color="secondary" size="80">mdi-forum</v-icon>
+            <v-icon color="secondary" size="60">mdi-forum</v-icon>
             <h2 class="title">Discussion Forum</h2>
           </v-card-title>
           <v-card-text>
             Join discussions and engage with other learners to enhance your Arabic skills.
           </v-card-text>
           <v-card-actions class="justify-center d-flex">
-            <v-btn color="secondary" :to="'/discussion'" size="x-large">Join Now</v-btn>
+            <v-btn variant="elevated" color="secondary" :to="'/discussion'">Join Now</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="600">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="600"
+          data-aos-offset="-100">
           <v-card-title class="text-center">
-            <v-icon color="secondary" size="80">mdi-earth</v-icon>
+            <v-icon color="secondary" size="60">mdi-earth</v-icon>
             <h2 class="title">Cultural Insights</h2>
           </v-card-title>
           <v-card-text>
             Explore the rich culture behind the Arabic language and traditions.
           </v-card-text>
           <v-card-actions class="justify-center d-flex">
-            <v-btn color="secondary" :to="'/culture'" size="x-large">Explore</v-btn>
+            <v-btn variant="elevated" color="secondary" :to="'/culture'">Explore</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -133,9 +137,22 @@ const { isLogin } = storeToRefs(user)
 .v-card-text {
   font-size: 1.2rem !important;
   line-height: 1.2;
-  height: 132px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 85px;
+}
+
+@media (min-width:1280px) {
+  .v-card-text {
+    height: 85px !important;
+  }
+
+  .title {
+    height: 32px;
+  }
+}
+
+@media (min-width:600px) {
+  .v-card-text {
+    height: 132px;
+  }
 }
 </style>

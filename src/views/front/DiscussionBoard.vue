@@ -1,4 +1,5 @@
 <template>
+  <!-- <v-parallax src="../../assets/mosque.jpg" :height="600" :scroll-threshold="0.5" elevation="2"></v-parallax> -->
   <v-container>
     <v-row class="max-width-1080">
       <v-col cols="12">
@@ -30,7 +31,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="error" @click="closeDialog" :loading="isSubmitting">Cancel</v-btn>
-          <v-btn color="primary" type="submit" :loading="isSubmitting">Submit</v-btn>
+          <v-btn color="primary" type="submit" :loading="isSubmitting" variant="elevated">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>

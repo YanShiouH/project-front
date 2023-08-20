@@ -1,4 +1,8 @@
 <template>
+  <!-- <v-parallax src="../../assets/mosque.jpg" :height="600" :scroll-threshold="0.5" elevation="2"></v-parallax> -->
+  <!-- <section class="image-section">
+    <img src="../../assets/mosque.jpg" alt="Responsive Image">
+  </section> -->
   <v-container>
     <v-row class="max-width-1080">
       <v-col cols="12">
@@ -78,4 +82,5 @@ const calculateDelay = (index) => {
 }
 </script>
 
-<style scope lang="sass" src="../../assets/pages/_cultureCorner.sass"></style>
+<style scope lang="sass" src="../../assets/pages/_cultureCorner.sass">
+</style>

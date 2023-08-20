@@ -8,7 +8,7 @@
     </v-card-text>
     <v-card-actions class="d-flex justify-center">
       <router-link :to="'/courses/' + _id" class="text-primary text-decoration-none">
-        <v-btn color="primary">Get Started</v-btn>
+        <v-btn variant="elevated" color="secondary">Get Started</v-btn>
       </router-link>
     </v-card-actions>
   </v-card>
