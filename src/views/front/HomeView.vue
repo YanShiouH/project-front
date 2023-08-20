@@ -11,7 +11,7 @@
   <v-container class="features">
     <v-row class="max-width-1080">
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="80">mdi-school</v-icon>
             <h2 class="title">Interactive Lessons</h2>
@@ -25,7 +25,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="400">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="80">mdi-forum</v-icon>
             <h2 class="title">Discussion Forum</h2>
@@ -39,7 +39,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="4">
-        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200">
+        <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="600">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="80">mdi-earth</v-icon>
             <h2 class="title">Cultural Insights</h2>
@@ -56,7 +56,7 @@
   </v-container>
   <footer class="footer">
     <div class="footer-content">
-      <p>&copy; 2023 Arabic Learning. All rights reserved.</p>
+      <p>&copy; 2023 Taealam. All rights reserved.</p>
     </div>
   </footer>
 </template>
@@ -120,12 +120,6 @@ const { isLogin } = storeToRefs(user)
 .footer-content {
   font-size: 14px;
 }
-
-/* .feature-card {
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
 
 .title {
   height: 64px;

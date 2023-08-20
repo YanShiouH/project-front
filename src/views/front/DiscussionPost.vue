@@ -20,7 +20,8 @@
         <p class="login-message">Please <router-link to="/login" class="login-link">log in</router-link> to leave a
           comment.</p>
       </v-col>
-      <v-col cols="12" v-for="comment in comments" :key="comment._id">
+      <v-col cols="12" v-for="(comment, index) in comments" :key="comment._id" data-aos="fade-down"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <CommentCard v-bind="comment"></CommentCard>
       </v-col>
     </v-row>
@@ -121,6 +122,9 @@ const submit = handleSubmit(async (values) => {
     })
   }
 })
+const calculateDelay = (index) => {
+  return index * 50
+}
 </script>
 
 <style lang="sass" scoped src="../../assets/pages/_discussionPost.sass">
