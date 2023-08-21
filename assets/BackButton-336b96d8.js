@@ -1,0 +1,1 @@
+import{ar as a,Z as o,$ as c,c as s,a1 as r,a8 as n,K as _}from"./index-2464dbc7.js";const u={class:"d-flex justify-center my-5"},k={__name:"BackButton",setup(l){const e=a(),t=()=>{e.go(-1)};return(d,i)=>(o(),c("div",u,[s(_,{onClick:t,color:"secondary"},{default:r(()=>[n("Back")]),_:1})]))}};export{k as _};
