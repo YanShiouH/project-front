@@ -9,25 +9,16 @@
       <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
         <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
       </v-col>
-      <v-col cols="12">
-        <v-text-field v-model="searchQuery" label="Search" placeholder="Search posts" :prepend-icon="mdi - magnify">
-          <template #append>
-            <v-btn-group>
-              <v-btn icon @click="performSearch">
-                <v-icon color="primary">mdi-magnify</v-icon>
-              </v-btn>
-              <v-btn icon @click="resetSearch">
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </v-btn-group>
-          </template>
+      <v-col cols="5" sm="8" lg="9">
+        <v-text-field v-model="searchQuery" placeholder="Search..." append-inner-icon="mdi-magnify" variant="filled"
+          density="compact" @click:append-inner="onClick">
         </v-text-field>
       </v-col>
-      <v-col cols="12" class="d-flex justify-end">
-        <v-btn-group>
-          <v-btn @click="sortBy('newest')">Newest</v-btn>
-          <v-btn @click="sortBy('mostComments')">Most Comments</v-btn>
-        </v-btn-group>
+      <v-col cols="7" sm="4" lg="3" class="d-flex justify-end">
+        <v-btn-toggle v-model="toggle" divided variant="outlined">
+          <v-btn @click="sortBy('newest')" variant="outlined">Newest</v-btn>
+          <v-btn @click="sortBy('popular')" variant="outlined">Popular</v-btn>
+        </v-btn-toggle>
       </v-col>
       <v-col cols="12" v-for="(post, index) in sliced" :key="post._id" data-aos="fade-down" data-aos-duration="1200"
         :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
@@ -77,14 +68,13 @@ const user = useUserStore()
 const { isLogin } = storeToRefs(user)
 
 const createSnackbar = useSnackbar()
-const posts = ref([]);
-
+const posts = ref([])
+const toggle = ref(0);
 (async () => {
   try {
     const { data } = await api.get('/discussion')
     const sortedData = data.result.sort((a, b) => new Date(b.date) - new Date(a.date))
     posts.value.push(...sortedData)
-    console.log(data)
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -170,14 +160,19 @@ const sliced = computed(() => {
 const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
 const searchQuery = ref('')
 
-const filteredPosts = computed(() => {
-  return posts.value.filter(post => {
-    const lowerCaseQuery = searchQuery.value.toLowerCase()
-    return post.title.toLowerCase().includes(lowerCaseQuery) ||
-      post.content.toLowerCase().includes(lowerCaseQuery)
-  })
-})
+const sortBy = async (criteria) => {
+  if (criteria === 'newest') {
+    posts.value.sort((a, b) => new Date(b.date) - new Date(a.date))
+  } else if (criteria === 'popular') {
+    posts.value.sort((a, b) => b.comments.length - a.comments.length)
+  }
+}
 const calculateDelay = (index) => {
   return index * 200
 }
 </script>
+<style lang="sass" scope>
+.v-field__append-inner
+  cursor: pointer
+
+</style>

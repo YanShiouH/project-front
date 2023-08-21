@@ -17,26 +17,46 @@
     <v-main class="h-100" @click.stop="rail = true">
       <v-container>
         <v-row v-show="selectedTab === 'profile'" class="max-width-835">
-          <v-col>
+          <v-col cols="12">
             <h2 class="profile-title">Profile</h2>
             <h4 class="personal-info-title">Personal Information</h4>
-            <v-col cols="12">
-              <v-label class="info-label">Account</v-label><br>
-              <input type="text" disabled :value="user.account" placeholder name="account" class="info-input">
-            </v-col>
-            <v-col cols="12">
-              <v-label class="info-label">Email</v-label><br>
-              <input type="text" disabled :value="user.email" placeholder name="email" class="info-input">
-            </v-col>
           </v-col>
+          <v-col cols="12">
+            <v-label class="info-label">Account</v-label><br>
+            <input type="text" disabled :value="user.account" placeholder name="account" class="info-input">
+          </v-col>
+          <v-col cols="12">
+            <v-label class="info-label">Email</v-label><br>
+            <input type="text" disabled :value="user.email" placeholder name="email" class="info-input">
+          </v-col>
+          <v-col cols="12">
+            <h4 class="personal-info-title">Reset Password</h4>
+          </v-col>
+          <v-col cols="12">
+            <v-form>
+              <v-col cols="12">
+                <v-label class="info-label">Current password</v-label><br>
+                <input type="text" placeholder name="currentPassword" class="info-input">
+              </v-col>
+              <v-col cols="12">
+                <v-label class="info-label">New password</v-label><br>
+                <input type="text" placeholder name="newPassword" class="info-input">
+              </v-col>
+              <v-col cols="12">
+                <v-label class="info-label">Confirm new password</v-label><br>
+                <input type="text" placeholder name="nonfirmPassword" class="info-input">
+              </v-col>
+              <v-col cols="12">
+                <v-btn color="primary">Update</v-btn>
+              </v-col>
+            </v-form></v-col>
         </v-row>
         <v-row v-show="selectedTab === 'activity'" class="max-width-835">
           <v-col cols="12" sm="6" lg="4">
             <v-card class="text-center" variant="elevated">
               <v-card-title>Liked Articles</v-card-title>
               <v-card-text>
-                <span class="highlight-number">{{ user.profile[0]?.likedArticles?.length || 0 }}</span><br>
-                articles liked</v-card-text>
+                <span class="highlight-number">{{ user.profile[0]?.likedArticles?.length || 0 }}</span></v-card-text>
             </v-card>
           </v-col>
           <v-col cols="12" sm="6" lg="4">
@@ -44,9 +64,7 @@
               <v-card-title>Current Lesson</v-card-title>
               <v-card-text>
                 <template v-if="user.profile[0] && user.profile[0].currentLesson !== null">
-
-                  <span class="highlight-number">{{ user.profile[0].currentLesson }}</span><br><span
-                    class="text-white">lesson</span></template>
+                  <span class="highlight-number">{{ user.profile[0].currentLesson }}</span></template>
                 <template v-else>
                   <p>Start your learning journey now! Choose a lesson to begin.</p>
                 </template>
@@ -57,7 +75,7 @@
             <v-card class="text-center" variant="elevated">
               <v-card-title>Posted Posts</v-card-title>
               <v-card-text>
-                <span class="highlight-number">{{ user.profile[0]?.postedPosts?.length || 0 }}</span><br> posts posted
+                <span class="highlight-number">{{ user.profile[0]?.postedPosts?.length || 0 }}</span>
               </v-card-text>
             </v-card>
           </v-col>
