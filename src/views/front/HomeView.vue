@@ -69,11 +69,7 @@
       </v-col>
     </v-row>
   </v-container> -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2023 Taealam. All rights reserved.</p>
-    </div>
-  </footer>
+  <Footer class="marginTop"></Footer>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue'
@@ -83,6 +79,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { VuePreloader } from 'vue-preloader'
 import '../../../node_modules/vue-preloader/dist/style.css'
+import Footer from '@/components/footeR.vue'
 const showAnimation = ref(true)
 onMounted(() => {
   setTimeout(() => {
@@ -96,76 +93,6 @@ const user = useUserStore()
 const { isLogin } = storeToRefs(user)
 
 </script>
-<style scoped>
-.video-section {
-  position: relative;
-}
+<style scoped lang="sass" src="../../assets/pages/_home.sass">
 
-.responsive-video {
-  width: 100%;
-}
-
-.welcome {
-  position: absolute;
-  top: calc(50% - 48px);
-  left: 0;
-  width: 100%;
-}
-
-@media (min-width: 1440px) {
-  .welcome {
-    font-size: 2rem;
-  }
-
-  .welcome h1 {
-    font-size: 3rem;
-  }
-
-  .welcome p {
-    font-size: 1.5rem;
-  }
-}
-
-.footer {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 0;
-  text-align: center;
-  margin-top: -9px;
-}
-
-.footer-content {
-  font-size: 14px;
-}
-
-.title {
-  height: 64px;
-  white-space: normal;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 28px;
-}
-
-.v-card-text {
-  font-size: 1.2rem !important;
-  line-height: 1.2;
-  height: 85px;
-}
-
-@media (min-width:1280px) {
-  .v-card-text {
-    height: 85px !important;
-  }
-
-  .title {
-    height: 32px;
-  }
-}
-
-@media (min-width:600px) {
-  .v-card-text {
-    height: 132px;
-  }
-}
 </style>

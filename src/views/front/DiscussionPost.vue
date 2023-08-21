@@ -25,6 +25,7 @@
         <CommentCard v-bind="comment"></CommentCard>
       </v-col>
     </v-row>
+    <BtnBack></BtnBack>
   </v-container>
 </template>
 
@@ -36,6 +37,7 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import CommentCard from '@/components/CommentCard.vue'
+import BtnBack from '@/components/BackButton.vue'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 

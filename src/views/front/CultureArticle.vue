@@ -11,7 +11,9 @@
         <div v-html="formattedContent"></div>
       </v-col>
     </v-row>
+    <BtnBack></BtnBack>
   </v-container>
+  <Footer></Footer>
   <v-overlay :model-value="!culture.publish" persistent class="align-center text-center justify-center">
     <h1 class="text-red">Article has been removed</h1>
     <v-btn to="/">Back</v-btn>
@@ -23,6 +25,8 @@ import { ref, computed } from 'vue'
 import { api } from '@/plugins/axios'
 import { useRoute } from 'vue-router'
 import { useSnackbar } from 'vuetify-use-dialog'
+import BtnBack from '@/components/BackButton.vue'
+import Footer from '@/components/footeR.vue'
 
 const route = useRoute()
 const createSnackbar = useSnackbar()

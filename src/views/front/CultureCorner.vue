@@ -18,6 +18,7 @@
       </v-col>
     </v-row>
   </v-container>
+  <Footer></Footer>
 </template>
 
 <script setup>
@@ -25,6 +26,7 @@ import { api } from '@/plugins/axios'
 import { ref, onMounted, nextTick, computed } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
 import CultureCard from '@/components/CultureCard.vue'
+import Footer from '@/components/footeR.vue'
 import { gsap } from 'gsap'
 import AOS from 'aos'
 import 'aos/dist/aos.css'

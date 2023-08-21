@@ -45,7 +45,6 @@
 
 <script setup>
 import validator from 'validator'
-import { ref } from 'vue'
 import * as yup from 'yup'
 import emailjs from 'emailjs-com'
 import { useForm, useField } from 'vee-validate'
@@ -107,7 +106,6 @@ const submit = handleSubmit(async (values) => {
 
     console.log('Email sent successfully:', response.text)
     resetForm()
-    // Clear form fields
   } catch (error) {
     console.log(error)
     if (error.name === 'ValidationError') {
@@ -118,63 +116,7 @@ const submit = handleSubmit(async (values) => {
   }
 })
 
-// const submitForm = async () => {
-//   try {
-//     await schema.validate(contactForm.value, { abortEarly: false })
-
-//     const templateParams = {
-//       to_email: 'machichioz79@gmail.com',
-//       from_name: contactForm.value.name,
-//       from_email: contactForm.value.email,
-//       subject: contactForm.value.subject,
-//       message: contactForm.value.message
-//     }
-
-//     const response = await emailjs.send(
-//       'service_dgqnwlj',
-//       'template_grnvf2q',
-//       templateParams,
-//       'E9O3osL8tLn5HfqTG'
-//     )
-
-//     console.log('Email sent successfully:', response)
-
-//     contactForm.value = {
-//       name: '',
-//       email: '',
-//       subject: '',
-//       message: ''
-//     }
-//   } catch (error) {
-//     console.error('Validation errors or sending email error:', error)
-//   }
-// }
-
-// const resetForm = () => {
-//   contactForm.value = {
-//     name: '',
-//     email: '',
-//     subject: '',
-//     message: ''
-//   }
-// }
 </script>
 
-<style lang="sass" scope>
-.subheading
-  font-size: 24px
-  font-weight: bold
-  color: #FF6F61
-
-.about-text
-  font-size: 20px
-  color: #333
-
-.v-expansion-panels--variant-accordion
-  font-size:20px
-.v-expansion-panel-title
-  font-size: 20px
-.max-width-512
-  max-width: 512px
-  margin: 0 auto
+<style lang="sass" scope src="../../assets/pages/_aboutUs.sass">
 </style>

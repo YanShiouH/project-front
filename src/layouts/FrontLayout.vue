@@ -46,9 +46,7 @@
           <v-btn variant="text" :prepend-icon="navItem.icon" :to="navItem.to" v-if="navItem.show">{{ navItem.text
           }}</v-btn>
         </template>
-        <!-- <v-btn><v-avatar><v-img :src="avatar"></v-img></v-avatar></v-btn> -->
       </template>
-      <!-- <v-btn v-if="!isMobile && isLogin" variant="text" prepend-icon="mdi-logout" @click="logout">Sign Out</v-btn> -->
       <v-spacer v-if="!isMobile"></v-spacer>
       <div class="text-center" v-if="!isMobile">
         <v-menu open-on-hover>
@@ -81,6 +79,11 @@
     </v-container>
   </v-app-bar>
   <v-main>
+    <v-breadcrumbs :items="breadcrumbs" v-if="$route.fullPath !== '/'">
+      <template #divider>
+        <v-icon icon="mdi-chevron-right"></v-icon>
+      </template>
+    </v-breadcrumbs>
     <router-view :key="$route.path"></router-view>
   </v-main>
 </template>
@@ -92,7 +95,7 @@ import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
-import { VuePreloader } from 'vue-preloader'
+
 const showAnimation = ref(true)
 onMounted(() => {
   setTimeout(() => {
@@ -115,9 +118,6 @@ const navItems = computed(() => {
     { to: '/culture', text: 'Culture Corner', icon: '', show: true },
     { to: '/discussion', text: 'Discussion Board', icon: '', show: true },
     { to: '/aboutus', text: 'About Us', icon: '', show: true }
-    // { to: '/admin', text: 'Admin', icon: 'mdi-cog', show: isLogin.value && isAdmin.value },
-    // { to: '/login', text: 'Log In', icon: 'mdi-login', show: !isLogin.value },
-    // { to: '/register', text: 'Sign Up', icon: 'mdi-account-plus', show: !isLogin.value }
   ]
 })
 
@@ -147,5 +147,5 @@ const logout = async () => {
   }
 }
 </script>
-<style scoped lang="sass" src=".././assets/layouts/_front.sass">
+<style scoped lang="sass" src="../assets/layouts/_front.sass">
 </style>

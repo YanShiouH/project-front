@@ -9,6 +9,26 @@
       <v-col cols="12" v-if="isLogin" class="d-flex justify-end">
         <v-btn color="secondary" @click="openDialog">Add New Post</v-btn>
       </v-col>
+      <v-col cols="12">
+        <v-text-field v-model="searchQuery" label="Search" placeholder="Search posts" :prepend-icon="mdi - magnify">
+          <template #append>
+            <v-btn-group>
+              <v-btn icon @click="performSearch">
+                <v-icon color="primary">mdi-magnify</v-icon>
+              </v-btn>
+              <v-btn icon @click="resetSearch">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-btn-group>
+          </template>
+        </v-text-field>
+      </v-col>
+      <v-col cols="12" class="d-flex justify-end">
+        <v-btn-group>
+          <v-btn @click="sortBy('newest')">Newest</v-btn>
+          <v-btn @click="sortBy('mostComments')">Most Comments</v-btn>
+        </v-btn-group>
+      </v-col>
       <v-col cols="12" v-for="(post, index) in sliced" :key="post._id" data-aos="fade-down" data-aos-duration="1200"
         :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <PostCard v-bind="post"></PostCard>
@@ -64,6 +84,7 @@ const posts = ref([]);
     const { data } = await api.get('/discussion')
     const sortedData = data.result.sort((a, b) => new Date(b.date) - new Date(a.date))
     posts.value.push(...sortedData)
+    console.log(data)
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -147,7 +168,15 @@ const sliced = computed(() => {
 })
 
 const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
+const searchQuery = ref('')
 
+const filteredPosts = computed(() => {
+  return posts.value.filter(post => {
+    const lowerCaseQuery = searchQuery.value.toLowerCase()
+    return post.title.toLowerCase().includes(lowerCaseQuery) ||
+      post.content.toLowerCase().includes(lowerCaseQuery)
+  })
+})
 const calculateDelay = (index) => {
   return index * 200
 }

@@ -10,6 +10,7 @@
         <CourseContent :content="item"></CourseContent>
       </v-col>
     </v-row>
+    <BtnBack></BtnBack>
   </v-container>
 </template>
 <script setup>
@@ -17,6 +18,7 @@ import { api, apiAuth } from '@/plugins/axios'
 import { ref } from 'vue'
 import { useSnackbar } from 'vuetify-use-dialog'
 import CourseContent from '@/components/CourseContent.vue'
+import BtnBack from '@/components/BackButton.vue'
 import { useRoute } from 'vue-router'
 import { useUserStore } from '@/store/user'
 import AOS from 'aos'
@@ -30,29 +32,17 @@ const route = useRoute()
 const courseContent = ref([])
 const lessonNo = ref('')
 const topic = ref('');
+
 (async () => {
   try {
-    const { data } = await api.get('/courses/' + route.params.id)
-    lessonNo.value = data.result.lessonNo
-    topic.value = data.result.topic
-    courseContent.value = [...data.result.content]
-  } catch (error) {
-    console.log(error)
-    createSnackbar({
-      text: error.response.data.message,
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
-    })
-  }
-})();
-(async () => {
-  try {
-    const { data } = await apiAuth.patch('/users/currentLesson', { _id: route.params.id })
-    user.profile = data.result
+    const responses = await Promise.all([
+      api.get('/courses/' + route.params.id),
+      apiAuth.patch('/users/currentLesson', { _id: route.params.id })
+    ])
+    lessonNo.value = responses[0].data.result.lessonNo
+    topic.value = responses[0].data.result.topic
+    courseContent.value = [...responses[0].data.result.content]
+    user.profile = responses[1].data.result
   } catch (error) {
     console.log(error)
     createSnackbar({
