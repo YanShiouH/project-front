@@ -1,16 +1,4 @@
 <template>
-  <!-- <vue-preloader background-color="#FFF" color="#FF6F61" transition-type="fade-up" :loading-speed="16"
-    :transition-speed="1400">
-    <template v-slot="{ percent, color }">
-      <transition name="loading-animation" mode="in-out">
-        <div v-if="showAnimation" :style="{ color }">
-          <v-progress-circular :rotate="360" :size="80" :width="15" :model-value="percent" :color="color">
-            {{ percent }}
-          </v-progress-circular>
-        </div>
-      </transition>
-    </template>
-  </vue-preloader> -->
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
       <v-btn variant="text" class="v-btn__content" :to="isLogin ? '/profile' : '/login'">
@@ -104,13 +92,13 @@ import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
-// import { VuePreloader } from 'vue-preloader'
-// const showAnimation = ref(true)
-// onMounted(() => {
-//   setTimeout(() => {
-//     showAnimation.value = false
-//   }, 3000)
-// })
+import { VuePreloader } from 'vue-preloader'
+const showAnimation = ref(true)
+onMounted(() => {
+  setTimeout(() => {
+    showAnimation.value = false
+  }, 3000)
+})
 const createSnackbar = useSnackbar()
 const user = useUserStore()
 

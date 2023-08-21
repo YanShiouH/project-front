@@ -1,4 +1,15 @@
 <template>
+  <vue-preloader @loading-is-over="showAnimation = false" :overflowActive="false" transition-type="fade-up"
+    background-color="#fff" color="#FF6F61">
+    <template v-slot="{ color, percent }">
+      <transition name="loading-animation" mode="in-out">
+        <div style="width: 90%;">
+          <h1 class="text-center text-secondary">{{ percent > 100 ? 100 : percent }}%</h1>
+          <div :style="{ backgroundColor: color, height: '5px', width: percent + '%' }"></div>
+        </div>
+      </transition>
+    </template>
+  </vue-preloader>
   <section class="video-section">
     <video class="responsive-video" src="../../assets/home.mp4" muted autoplay loop type="video/mp4">
     </video>
@@ -8,11 +19,11 @@
       <v-btn color="secondary" size="large" :to="isLogin ? '/courses' : '/login'">Get Started</v-btn>
     </div>
   </section>
-  <v-container class="features">
+  <!-- <v-container class="features">
     <v-row class="max-width-1080">
       <v-col cols="12" sm="4">
         <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="200"
-          data-aos-offset="-100">
+          data-aos-offset="-50">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="60">mdi-school</v-icon>
             <h2 class="title">Interactive Lessons</h2>
@@ -28,7 +39,7 @@
       </v-col>
       <v-col cols="12" sm="4">
         <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="400"
-          data-aos-offset="-100">
+          data-aos-offset="-50">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="60">mdi-forum</v-icon>
             <h2 class="title">Discussion Forum</h2>
@@ -43,7 +54,7 @@
       </v-col>
       <v-col cols="12" sm="4">
         <v-card class="feature-card" data-aos="fade-down" data-aos-duration="1200" data-aos-delay="600"
-          data-aos-offset="-100">
+          data-aos-offset="-50">
           <v-card-title class="text-center">
             <v-icon color="secondary" size="60">mdi-earth</v-icon>
             <h2 class="title">Cultural Insights</h2>
@@ -57,7 +68,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </v-container> -->
   <footer class="footer">
     <div class="footer-content">
       <p>&copy; 2023 Taealam. All rights reserved.</p>
@@ -65,13 +76,19 @@
   </footer>
 </template>
 <script setup>
-// import { computed } from 'vue'
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
-// import { VuePreloader } from 'vue-preloader'
-
+import { VuePreloader } from 'vue-preloader'
+import '../../../node_modules/vue-preloader/dist/style.css'
+const showAnimation = ref(true)
+onMounted(() => {
+  setTimeout(() => {
+    showAnimation.value = false
+  }, 3000)
+})
 AOS.init()
 
 const user = useUserStore()
@@ -82,11 +99,6 @@ const { isLogin } = storeToRefs(user)
 <style scoped>
 .video-section {
   position: relative;
-}
-
-.responsive-video {
-  width: 100%;
-  height: auto;
 }
 
 .responsive-video {
@@ -117,8 +129,9 @@ const { isLogin } = storeToRefs(user)
 .footer {
   background-color: #333;
   color: #fff;
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
+  margin-top: -9px;
 }
 
 .footer-content {

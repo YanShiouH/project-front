@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-row class="max-width-1080">
-      <v-col cols="12" class="text-center">
+      <v-col cols="12" class="text-center mb-5">
         <h1 class="mb-3">About Us</h1>
         <p class="subheading">Welcome to Taealam, your gateway to learning Arabic!</p>
         <p class="about-text">We are a passionate group of language enthusiasts dedicated to helping you explore the
           beauty of the Arabic
           language and culture.</p>
       </v-col>
-      <v-col cols="12" class="mt-5">
+      <v-col cols="12" class="my-5">
         <h2 class="subtitle-1">Frequently Asked Questions</h2>
         <v-expansion-panels variant="accordion">
           <v-expansion-panel v-for="(item, index) in faqItems" :key="index" :title="item.question" :text="item.answer"
@@ -16,16 +16,27 @@
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
-      <v-col cols="12" class="mt-5 max-width-512">
+      <v-col cols="12" md="6" class="my-5">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d163540.95034636674!2d121.3920916493341!3d25.08112733731736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442a7bec9ad74b1%3A0xa639904a89f26435!2z5Yue5YuV6YOo5Yue5YuV5Yqb55m85bGV572y5YyX5Z-65a6c6Iqx6YeR6aas5YiG572y5rOw5bGx6IG35qWt6KiT57e05aC0!5e0!3m2!1szh-TW!2stw!4v1692578131925!5m2!1szh-TW!2stw"
+          width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </v-col>
+      <v-col cols="12" md="6" class="my-5 max-width-512">
         <h2 class="subtitle-1">Contact Us</h2>
-        <v-form @submit.prevent="submitForm" id="myForm">
-          <v-text-field label="Name" v-model="contactForm.name" required></v-text-field>
-          <v-text-field label="Email" v-model="contactForm.email" required></v-text-field>
-          <v-text-field label="Subject" v-model="contactForm.subject" required></v-text-field>
-          <v-textarea label="Message" v-model="contactForm.message" required></v-textarea>
-          <v-col col="12" class="d-flex justify-end mt-3">
-            <v-btn variant="text" type="reset" color="error" @click="resetForm">Reset</v-btn>
-            <v-btn variant="elevated" type="submit" color="primary" class="ml-2">Submit</v-btn></v-col>
+        <v-form :disabled="isSubmitting" @submit.prevent="submit" id="myForm">
+          <v-text-field label="Name" name="from_name" v-model="name.value.value"
+            :error-messages="name.errorMessage.value"></v-text-field>
+          <v-text-field label="Email" name="from_email" v-model="email.value.value"
+            :error-messages="email.errorMessage.value"></v-text-field>
+          <v-text-field label="Subject" name="subject" v-model="subject.value.value"
+            :error-messages="subject.errorMessage.value"></v-text-field>
+          <v-textarea label="Message" name="message" v-model="message.value.value"
+            :error-messages="message.errorMessage.value"></v-textarea>
+          <v-col col="12" class="d-flex justify-end">
+            <v-btn variant="text" color="error" @click="handleReset">Reset</v-btn>
+            <v-btn variant="elevated" type="submit" color="primary">Submit</v-btn></v-col>
         </v-form>
       </v-col>
     </v-row>
@@ -33,9 +44,11 @@
 </template>
 
 <script setup>
+import validator from 'validator'
 import { ref } from 'vue'
 import * as yup from 'yup'
-import emailjs from 'emailjs-com' // Import the emailjs library
+import emailjs from 'emailjs-com'
+import { useForm, useField } from 'vee-validate'
 
 const faqItems = [
   {
@@ -60,60 +73,91 @@ const faqItems = [
   }
 ]
 
-const contactForm = ref({
-  name: '',
-  email: '',
-  subject: '',
-  message: ''
+const schema = yup.object({
+  name: yup.string().required('Name is required').min(3, 'Name should have at least 3 characters'),
+  email: yup.string().required('Email is required').test(
+    'isEmail', 'Invalid email format', (value) => validator.isEmail(value)
+  ),
+  subject: yup.string().required('Subject is required').min(4, 'Subject should have at least 4 characters'),
+  message: yup.string().required('Message is required').min(4, 'Message should have at least 4 characters')
 })
-
-const schema = yup.object().shape({
-  name: yup.string().required(),
-  email: yup.string().email().required(),
-  subject: yup.string().required(),
-  message: yup.string().required()
+const { handleSubmit, isSubmitting, resetForm, handleReset } = useForm({
+  validationSchema: schema
 })
-
-const submitForm = async () => {
+const name = useField('name')
+const email = useField('email')
+const subject = useField('subject')
+const message = useField('message')
+const submit = handleSubmit(async (values) => {
   try {
-    await schema.validate(contactForm.value, { abortEarly: false })
-
     const templateParams = {
-      to_email: 'machichioz79@gmail.com',
-      from_name: contactForm.value.name,
-      from_email: contactForm.value.email,
-      subject: contactForm.value.subject,
-      message: contactForm.value.message
+      to_email: 'arena702048@gmail.com',
+      from_name: values.name,
+      from_email: values.email,
+      subject: values.subject,
+      message: values.message
     }
 
     const response = await emailjs.send(
       'service_dgqnwlj',
-      'template_grnvf2q',
+      'template_l6ryww9',
       templateParams,
       'E9O3osL8tLn5HfqTG'
     )
 
-    console.log('Email sent successfully:', response)
-
-    contactForm.value = {
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    }
+    console.log('Email sent successfully:', response.text)
+    resetForm()
+    // Clear form fields
   } catch (error) {
-    console.error('Validation errors or sending email error:', error)
+    console.log(error)
+    if (error.name === 'ValidationError') {
+      console.error('Validation errors:', error.errors)
+    } else {
+      console.error('Email sending error:', error.text)
+    }
   }
-}
+})
 
-const resetForm = () => {
-  contactForm.value = {
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  }
-}
+// const submitForm = async () => {
+//   try {
+//     await schema.validate(contactForm.value, { abortEarly: false })
+
+//     const templateParams = {
+//       to_email: 'machichioz79@gmail.com',
+//       from_name: contactForm.value.name,
+//       from_email: contactForm.value.email,
+//       subject: contactForm.value.subject,
+//       message: contactForm.value.message
+//     }
+
+//     const response = await emailjs.send(
+//       'service_dgqnwlj',
+//       'template_grnvf2q',
+//       templateParams,
+//       'E9O3osL8tLn5HfqTG'
+//     )
+
+//     console.log('Email sent successfully:', response)
+
+//     contactForm.value = {
+//       name: '',
+//       email: '',
+//       subject: '',
+//       message: ''
+//     }
+//   } catch (error) {
+//     console.error('Validation errors or sending email error:', error)
+//   }
+// }
+
+// const resetForm = () => {
+//   contactForm.value = {
+//     name: '',
+//     email: '',
+//     subject: '',
+//     message: ''
+//   }
+// }
 </script>
 
 <style lang="sass" scope>
