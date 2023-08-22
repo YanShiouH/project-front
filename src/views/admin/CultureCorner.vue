@@ -35,12 +35,8 @@
         <v-card-text>
           <v-text-field label="Title" v-model="title.value.value"
             :error-messages="title.errorMessage.value"></v-text-field>
-          <!-- <v-text-field label="價格" v-model.number="price.value.value" :error-messages="price.errorMessage.value"
-            type="number" min="0"></v-text-field> -->
           <v-textarea label="Content" v-model="content.value.value" :error-messages="content.errorMessage.value"
             rows="12"></v-textarea>
-          <!-- <v-select label="分類" v-model="category.value.value" :error-messages="category.errorMessage.value"
-            :items="categories"></v-select> -->
           <v-checkbox label="Publish" v-model="publish.value.value"
             :error-messages="publish.errorMessage.value"></v-checkbox>
           <vue-file-agent v-model="files" v-model:raw-model-value="rawFiles" :max-files="1" max-size="1MB"

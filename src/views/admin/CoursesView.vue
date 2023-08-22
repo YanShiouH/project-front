@@ -157,7 +157,7 @@ const closeDialog = () => {
 }
 // 表單
 const schema = yup.object({
-  lessonNo: yup.string().required('Lesson No. is required'),
+  lessonNo: yup.number().required('Lesson No. is required'),
   topic: yup.string().required('Topic is required'),
   description: yup.string().required('Description is required'),
   content: yup.array().of(yup.string().required('Content is required')),
@@ -167,7 +167,7 @@ const schema = yup.object({
 const { handleSubmit, isSubmitting, resetForm, errors } = useForm({
   validationSchema: schema,
   initialValues: {
-    lessonNo: '',
+    lessonNo: 0,
     topic: '',
     description: '',
     content: [''],

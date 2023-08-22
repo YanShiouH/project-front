@@ -11,17 +11,17 @@
       </v-col>
       <v-col cols="5" sm="8" lg="9">
         <v-text-field v-model="searchQuery" placeholder="Search..." append-inner-icon="mdi-magnify" variant="filled"
-          density="compact" @click:append-inner="onClick">
+          density="compact" @click:append-inner="setfilter(searchQuery)" @keydown.enter="setfilter(searchQuery)">
         </v-text-field>
       </v-col>
       <v-col cols="7" sm="4" lg="3" class="d-flex justify-end">
         <v-btn-toggle v-model="toggle" divided variant="outlined">
-          <v-btn @click="sortBy('newest')" variant="outlined">Newest</v-btn>
-          <v-btn @click="sortBy('popular')" variant="outlined">Popular</v-btn>
+          <v-btn variant="outlined">Newest</v-btn>
+          <v-btn variant="outlined">Popular</v-btn>
         </v-btn-toggle>
       </v-col>
-      <v-col cols="12" v-for="(post, index) in sliced" :key="post._id" data-aos="fade-down" data-aos-duration="1200"
-        :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+      <v-col cols="12" v-for="(post, index) in filteredSlicedItems" :key="post._id" data-aos="fade-down"
+        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <PostCard v-bind="post"></PostCard>
       </v-col>
       <v-col cols="12">
@@ -62,11 +62,8 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 
 AOS.init()
-
 const user = useUserStore()
-
 const { isLogin } = storeToRefs(user)
-
 const createSnackbar = useSnackbar()
 const posts = ref([])
 const toggle = ref(0);
@@ -148,31 +145,42 @@ const submit = handleSubmit(async (values) => {
   }
 })
 
-const pageSize = ref(5)
-const currentPage = ref(1)
-
-const sliced = computed(() => {
-  const startIndex = (currentPage.value - 1) * pageSize.value
-  const endIndex = startIndex + pageSize.value
-  return posts.value.slice(startIndex, endIndex)
-})
-
-const totalPages = computed(() => Math.ceil(posts.value.length / pageSize.value))
-const searchQuery = ref('')
-
-const sortBy = async (criteria) => {
-  if (criteria === 'newest') {
-    posts.value.sort((a, b) => new Date(b.date) - new Date(a.date))
-  } else if (criteria === 'popular') {
-    posts.value.sort((a, b) => b.comments.length - a.comments.length)
-  }
-}
 const calculateDelay = (index) => {
   return index * 200
 }
+const searchQuery = ref('')
+const filter = ref('')
+const setfilter = value => {
+  filter.value = value
+}
+const filtereditems = computed(() => {
+  let result = posts.value
+  if (filter.value.length > 0) {
+    result = result.filter(post => {
+      const lowercaseQuery = filter.value.trim().toLowerCase()
+      return (
+        post.title.toLowerCase().includes(lowercaseQuery) ||
+        post.content.toLowerCase().includes(lowercaseQuery)
+      )
+    })
+  }
+  if (toggle.value === 0) {
+    result = result.sort((a, b) => new Date(b.date) - new Date(a.date))
+  } else {
+    result = result.sort((a, b) => b.comments.length - a.comments.length)
+  }
+  return result
+})
+const pageSize = ref(5)
+const currentPage = ref(1)
+const totalPages = computed(() => Math.ceil(filtereditems.value.length / pageSize.value))
+const filteredSlicedItems = computed(() => {
+  const startIndex = (currentPage.value - 1) * pageSize.value
+  const endIndex = startIndex + pageSize.value
+  return filtereditems.value.slice(startIndex, endIndex)
+})
 </script>
 <style lang="sass" scope>
 .v-field__append-inner
   cursor: pointer
-
 </style>

@@ -2,7 +2,7 @@
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
       <v-btn variant="text" class="v-btn__content" :to="isLogin ? '/profile' : '/login'">
-        <v-avatar><v-img :src="avatar"></v-img></v-avatar>
+        <v-avatar><v-img :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"></v-img></v-avatar>
       </v-btn>
       <template v-for="navItem in navItems" :key="navItem.to">
         <v-list-item v-if="navItem.show" :to="navItem.to">
@@ -52,7 +52,8 @@
         <v-menu open-on-hover>
           <template v-slot:activator="{ props }">
             <v-btn v-bind="props">
-              <v-avatar><v-img :src="avatar"></v-img></v-avatar>
+              <v-avatar><v-img
+                  :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"></v-img></v-avatar>
             </v-btn>
           </template>
           <v-list v-if="isLogin">
@@ -79,11 +80,6 @@
     </v-container>
   </v-app-bar>
   <v-main>
-    <v-breadcrumbs :items="breadcrumbs" v-if="$route.fullPath !== '/'">
-      <template #divider>
-        <v-icon icon="mdi-chevron-right"></v-icon>
-      </template>
-    </v-breadcrumbs>
     <router-view :key="$route.path"></router-view>
   </v-main>
 </template>
@@ -95,6 +91,7 @@ import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
+import router from '@/router'
 
 const showAnimation = ref(true)
 onMounted(() => {
@@ -125,15 +122,16 @@ const logout = async () => {
   try {
     await apiAuth.delete('/users/logout')
     user.logout()
-    createSnackbar({
-      text: 'You have been logged out',
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'green',
-        location: 'bottom'
-      }
-    })
+    // createSnackbar({
+    //   text: 'You have been logged out',
+    //   showCloseButton: false,
+    //   snackbarProps: {
+    //     timeout: 2000,
+    //     color: 'green',
+    //     location: 'bottom'
+    //   }
+    // })
+    router.push('/')
   } catch (error) {
     createSnackbar({
       text: error.response.data.message,
@@ -147,5 +145,5 @@ const logout = async () => {
   }
 }
 </script>
-<style scoped lang="sass" src="../assets/layouts/_front.sass">
+<style scope lang="sass" src="../assets/layouts/_front.sass">
 </style>

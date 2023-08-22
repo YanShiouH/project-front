@@ -127,6 +127,7 @@ const submit = handleSubmit(async (values) => {
 const calculateDelay = (index) => {
   return index * 50
 }
+
 </script>
 
 <style lang="sass" scoped src="../../assets/pages/_discussionPost.sass">

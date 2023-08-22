@@ -30,7 +30,7 @@ apiAuth.interceptors.response.use(res => {
   // 如果有收到回應
   if (error.response) {
     // 如果是JWT過期的錯誤、且不是舊換新請求
-    if (error.response.data.message === '登入逾時' && error.config.url !== '/users/extend') {
+    if (error.response.data.message === 'Session expired' && error.config.url !== '/users/extend') {
       const user = useUserStore()
       // 傳送JWT舊換新請求
       return apiAuth.patch('/users/extend')

@@ -83,6 +83,3 @@ const calculateDelay = (index) => {
   return index * 200
 }
 </script>
-
-<style scope lang="sass" src="../../assets/pages/_cultureCorner.sass">
-</style>

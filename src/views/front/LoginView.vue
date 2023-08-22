@@ -65,15 +65,15 @@ const submit = handleSubmit(async (values) => {
       profile: data.result.profile,
       role: data.result.role
     })
-    createSnackbar({
-      text: 'Login successful',
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'green',
-        location: 'bottom'
-      }
-    })
+    // createSnackbar({
+    //   text: 'Login successful',
+    //   showCloseButton: false,
+    //   snackbarProps: {
+    //     timeout: 2000,
+    //     color: 'green',
+    //     location: 'bottom'
+    //   }
+    // })
     router.push('/')
   } catch (error) {
     createSnackbar({

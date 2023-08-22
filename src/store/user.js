@@ -9,6 +9,7 @@ export const useUserStore = defineStore('user', () => {
   const email = ref('')
   const role = ref(UserRole.USER)
   const profile = ref([])
+  const image = ref('')
 
   const login = (data) => {
     token.value = data.token
@@ -16,6 +17,7 @@ export const useUserStore = defineStore('user', () => {
     email.value = data.email
     profile.value = data.profile
     role.value = data.role
+    image.value = data.image || undefined
   }
   const isLogin = computed(() => {
     return token.value.length > 0
@@ -34,6 +36,7 @@ export const useUserStore = defineStore('user', () => {
       email.value = data.result.email
       role.value = data.result.role
       profile.value = data.result.profile
+      image.value = data.result.image || undefined
     } catch (error) {
       token.value = ''
     }
@@ -44,9 +47,10 @@ export const useUserStore = defineStore('user', () => {
     email.value = ''
     role.value = UserRole.USER
     profile.value = []
+    image.value = ''
   }
   return {
-    token, account, email, role, login, isLogin, isAdmin, avatar, getProfile, logout, profile
+    token, account, email, role, login, isLogin, isAdmin, avatar, getProfile, logout, profile, image
   }
 }, {
   persist: {
