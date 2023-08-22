@@ -1,6 +1,7 @@
 <template>
   <v-layout class="h-100">
-    <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="rail = false" :clipped="isMobile">
+    <v-navigation-drawer v-model="drawer" :rail="rail" permanent @click="isMobile ? rail = true : rail = false"
+      :clipped="isMobile">
       <v-list-item :prepend-avatar="user.image === undefined ? avatar : user.image" nav title="Welcome">
         <template v-slot:append>
           <v-btn variant="text" icon="mdi-chevron-left" @click.stop="rail = !rail"></v-btn>
@@ -17,7 +18,7 @@
     <v-main class="h-100" @click.stop="rail = true">
       <v-container>
         <v-row v-show="selectedTab === 'profile'" class="max-width-835">
-          <v-col cols="6">
+          <v-col cols="12" sm="6">
             <h2 class="profile-title">Profile</h2>
             <h4 class="personal-info-title">Personal Information</h4>
             <v-label class="info-label">Account</v-label>
@@ -27,8 +28,9 @@
             <v-text-field :value="user.email" class="info-input" density="compact" variant="outlined"
               disabled></v-text-field>
           </v-col>
-          <v-col cols="6">
-            <v-img :src="user.image === undefined ? avatar : user.image" width="176" height="176" class="image"></v-img>
+          <v-col cols="12" sm="6">
+            <v-img :src="user.image === undefined ? avatar : user.image" width="176" height="176" class="image"
+              cover></v-img>
             <v-btn variant="text" color="primary" @click="openDialog" class="ms-10">Upload</v-btn>
           </v-col>
           <v-form :disabled="isSubmitting" @submit.prevent="submit">

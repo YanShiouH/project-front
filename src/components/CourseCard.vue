@@ -23,8 +23,8 @@ defineProps({
     default: () => ''
   },
   lessonNo: {
-    type: String,
-    default: () => ''
+    type: Number,
+    default: () => 0
   },
   topic: {
     type: String,

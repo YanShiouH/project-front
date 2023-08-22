@@ -70,7 +70,9 @@ const toggle = ref(0);
 (async () => {
   try {
     const { data } = await api.get('/discussion')
-    const sortedData = data.result.sort((a, b) => new Date(b.date) - new Date(a.date))
+    console.log(data)
+    const sortedData = data.result.sort((a, b) => new Date(a.date) - new Date(b.date))
+    console.log(sortedData)
     posts.value.push(...sortedData)
   } catch (error) {
     createSnackbar({
@@ -154,7 +156,8 @@ const setfilter = value => {
   filter.value = value
 }
 const filtereditems = computed(() => {
-  let result = posts.value
+  // let result = [...posts.value]
+  let result = JSON.parse(JSON.stringify(posts.value))
   if (filter.value.length > 0) {
     result = result.filter(post => {
       const lowercaseQuery = filter.value.trim().toLowerCase()
@@ -164,6 +167,7 @@ const filtereditems = computed(() => {
       )
     })
   }
+
   if (toggle.value === 0) {
     result = result.sort((a, b) => new Date(b.date) - new Date(a.date))
   } else {
@@ -179,6 +183,7 @@ const filteredSlicedItems = computed(() => {
   const endIndex = startIndex + pageSize.value
   return filtereditems.value.slice(startIndex, endIndex)
 })
+
 </script>
 <style lang="sass" scope>
 .v-field__append-inner

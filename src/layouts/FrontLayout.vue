@@ -2,7 +2,8 @@
   <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
     <v-list nav>
       <v-btn variant="text" class="v-btn__content" :to="isLogin ? '/profile' : '/login'">
-        <v-avatar><v-img :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"></v-img></v-avatar>
+        <v-avatar><v-img :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"
+            cover></v-img></v-avatar>
       </v-btn>
       <template v-for="navItem in navItems" :key="navItem.to">
         <v-list-item v-if="navItem.show" :to="navItem.to">
@@ -52,8 +53,8 @@
         <v-menu open-on-hover>
           <template v-slot:activator="{ props }">
             <v-btn v-bind="props">
-              <v-avatar><v-img
-                  :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"></v-img></v-avatar>
+              <v-avatar><v-img :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"
+                  cover></v-img></v-avatar>
             </v-btn>
           </template>
           <v-list v-if="isLogin">
