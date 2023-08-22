@@ -15,7 +15,8 @@
           @click="selectedTab = 'activity'"></v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main class="h-100" @click.stop="rail = true">
+    <!-- <v-main class="h-100" @click.stop="rail = true"> -->
+    <v-main class="h-100">
       <v-container>
         <v-row v-show="selectedTab === 'profile'" class="max-width-835">
           <v-col cols="12" sm="6">
