@@ -1,21 +1,19 @@
 <template>
-  <div class="background">
-    <v-container class="h-100">
-      <v-row class="max-width-1080">
-        <v-col cols="12">
-          <h1 class="text-center">Culture Corner</h1>
-        </v-col>
-        <v-col cols="12" sm="6" lg="4" v-for="(cultureItem, index) in sliced" :key="cultureItem._id" data-aos="zoom-out"
-          data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
-          <CultureCard v-bind="cultureItem" class="culture-card"></CultureCard>
-        </v-col>
-        <v-col cols="12">
-          <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
-        </v-col>
-      </v-row>
-    </v-container>
-    <Footer></Footer>
-  </div>
+  <v-container style="height: calc(100% - 41px);">
+    <v-row class="max-width-1080">
+      <v-col cols="12">
+        <h1 class="text-center">Culture Corner</h1>
+      </v-col>
+      <v-col cols="12" sm="6" lg="4" v-for="(cultureItem, index) in sliced" :key="cultureItem._id" data-aos="zoom-out"
+        data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+        <CultureCard v-bind="cultureItem" class="culture-card"></CultureCard>
+      </v-col>
+      <v-col cols="12">
+        <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
+      </v-col>
+    </v-row>
+  </v-container>
+  <Footer></Footer>
 </template>
 
 <script setup>

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="h-100">
+  <v-container style="height: calc(100% - 41px);">
     <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Discussion Board</h1>

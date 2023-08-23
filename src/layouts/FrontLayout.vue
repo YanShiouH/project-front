@@ -38,7 +38,7 @@
   <v-app-bar color="primary">
     <v-container class="d-flex align-center">
       <v-btn to="/" selected-class="" :active="false">
-        <v-avatar class="avatar me-2"><v-img src="../assets/logo.png" class="logo"></v-img></v-avatar>
+        <v-avatar class="avatar me-2 pb-1"><v-img src="../assets/logo.png" class="logo"></v-img></v-avatar>
         <v-app-bar-title>Taealam</v-app-bar-title>
       </v-btn>
       <v-spacer></v-spacer>

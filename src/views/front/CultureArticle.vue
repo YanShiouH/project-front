@@ -1,8 +1,14 @@
 <template>
-  <section class="text-center">
-    <h1>{{ culture.title }}</h1>
-    <v-img :src="culture.image" class="image"></v-img>
-  </section>
+  <v-container fluid class="text-center">
+    <v-row>
+      <v-col cols="12">
+        <h1>{{ culture.title }}</h1>
+      </v-col>
+      <v-col cols="12">
+        <v-img :src="culture.image" class="image"></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
   <v-container>
     <v-row class="max-width-1080">
       <v-col cols="12" class="content">

@@ -81,13 +81,15 @@
           enhancing global understanding and unlocking a vibrant language.</p>
       </v-col>
       <v-col cols="12" md="6" class="order-0 order-md-1">
-        <v-img src="../../assets/explore.png" class=" copyImage"></v-img>
-      </v-col></v-row></v-container>
+        <v-img src="../../assets/explore.png" class="copyImage"></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
   <v-container fluid class="parallax"></v-container>
   <v-container fluid style=" background-color: rgba(0,150,136,0.2);">
     <v-row>
-      <v-col cols="12" md="6">
-        <v-img src="../../assets/language.png" class=" copyImage"></v-img></v-col>
+      <v-col cols="12" md="6" class="">
+        <v-img src="../../assets/language.png" class="copyImage"></v-img></v-col>
       <v-col cols="12" md="6" class="d-flex justify-center align-center flex-column pa-md-16 pa-6">
         <h1 class="text-center my-6">Explore Arabic's Language Magic</h1>
         <p>Arabic learning offers more than words. Mastering Arabic simplifies understanding dialects like Farsi,
@@ -133,5 +135,4 @@ const { isLogin } = storeToRefs(user)
 
 </script>
 <style scoped lang="sass" src="../../assets/pages/_home.sass">
-
 </style>
