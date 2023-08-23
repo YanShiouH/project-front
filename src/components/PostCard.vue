@@ -44,10 +44,7 @@ defineProps({
 </script>
 <style scoped>
 .discussion-card:hover {
-  /* background-color: #f5f5f5; */
-  /* Light gray background */
   box-shadow: inset 0px 2px 20px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 150, 136, 0.2);
-  /* Subtle shadow */
 }
 </style>

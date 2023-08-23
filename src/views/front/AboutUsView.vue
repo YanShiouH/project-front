@@ -122,6 +122,6 @@ const submit = handleSubmit(async (values) => {
 
 </script>
 
-<style lang="sass" scope src="../../assets/pages/_aboutUs.sass">
+<style lang="sass" scoped src="../../assets/pages/_aboutUs.sass">
 
 </style>

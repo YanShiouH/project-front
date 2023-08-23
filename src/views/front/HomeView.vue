@@ -80,7 +80,8 @@
           reveals the art, stories, and traditions of the Arab world. Dive into the elegance of Arabic culture,
           enhancing global understanding and unlocking a vibrant language.</p>
       </v-col>
-      <v-col cols="12" md="6" class="order-0 order-md-1">
+      <v-col cols="12" md="6" class="order-0 order-md-1" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800"
+        data-aos-offset="-50">
         <v-img src="../../assets/explore.png" class="copyImage"></v-img>
       </v-col>
     </v-row>
@@ -88,7 +89,7 @@
   <v-container fluid class="parallax"></v-container>
   <v-container fluid style=" background-color: rgba(0,150,136,0.2);">
     <v-row>
-      <v-col cols="12" md="6" class="">
+      <v-col cols="12" md="6" data-aos="fade-right" data-aos-duration="600" data-aos-delay="800" data-aos-offset="-50">
         <v-img src="../../assets/language.png" class="copyImage"></v-img></v-col>
       <v-col cols="12" md="6" class="d-flex justify-center align-center flex-column pa-md-16 pa-6">
         <h1 class="text-center my-6">Explore Arabic's Language Magic</h1>
@@ -105,8 +106,9 @@
           stereotypes and fostering understanding. Embrace Arabic to bridge cultures and deepen connections in a diverse
           world, endorsed by Warwick University's Language Center.</p>
       </v-col>
-      <v-col cols="12" md="6" class="order-0 order-md-1">
-        <v-img src="../../assets/harmony.png" class="copyImage "></v-img>
+      <v-col cols="12" md="6" class="order-0 order-md-1" data-aos="fade-left" data-aos-duration="600" data-aos-delay="800"
+        data-aos-offset="-50">
+        <v-img src="../../assets/harmony.png" class="copyImage"></v-img>
       </v-col>
     </v-row>
   </v-container>

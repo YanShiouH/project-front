@@ -93,4 +93,4 @@ const formattedContent = (content) => {
 }
 
 </script>
-<style scope lang="sass" src="../assets/components/_cultureCard.sass"></style>
+<style scoped lang="sass" src="../assets/components/_cultureCard.sass"></style>

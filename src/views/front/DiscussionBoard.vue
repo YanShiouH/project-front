@@ -186,7 +186,7 @@ const filteredSlicedItems = computed(() => {
 })
 
 </script>
-<style lang="sass" scope>
+<style lang="sass" scoped>
 .v-field__append-inner
   cursor: pointer
 h1

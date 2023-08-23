@@ -147,5 +147,5 @@ const logout = async () => {
   }
 }
 </script>
-<style scope lang="sass" src="../assets/layouts/_front.sass">
+<style scoped lang="sass" src="../assets/layouts/_front.sass">
 </style>

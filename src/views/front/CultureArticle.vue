@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="text-center">
     <v-row>
-      <v-col cols="12">
+      <v-col cols="12" class="mt-3">
         <h1>{{ culture.title }}</h1>
       </v-col>
       <v-col cols="12">
@@ -75,22 +75,5 @@ const formattedContent = computed(() => {
   return processedContent
 })
 </script>
-<style lang="sass" scope>
-h1
-  font-size: 3rem
-.image
-  max-width:1424px
-  margin: auto
-.content
-  background-color: white
-  box-shadow: 0px 0px 50px rgba(0,0,0,0.1)
-
-@media (min-width: 600px)
-  .content
-    position: relative
-    top:-100px
-    padding: 40px
-@media (min-width: 960px)
-  .content
-    padding: 70px
+<style lang="sass" scoped src="../../assets/pages/_cultureArticle.sass">
 </style>

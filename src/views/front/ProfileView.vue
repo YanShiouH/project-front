@@ -217,5 +217,5 @@ const upload = async () => {
 }
 </script>
 
-<style scope lang="sass" src="../../assets/pages/_profile.sass">
+<style scoped lang="sass" src="../../assets/pages/_profile.sass">
 </style>

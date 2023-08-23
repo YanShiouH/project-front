@@ -5,4 +5,4 @@
     </div>
   </footer>
 </template>
-<style lang="sass" scope src="../assets/components/_footer.sass"></style>
+<style lang="sass" scoped src="../assets/components/_footer.sass"></style>

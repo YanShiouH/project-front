@@ -27,4 +27,4 @@ const startSpeaking = async () => {
 }
 </script>
 
-<style scope lang="sass" src=".././assets/components/_courseContent.sass"></style>
+<style scoped lang="sass" src=".././assets/components/_courseContent.sass"></style>
