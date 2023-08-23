@@ -1,1 +1,0 @@
-import{_ as o,Q as s,R as t,ao as _,ap as c,ai as a}from"./index-cd7b6f50.js";const r={},n=e=>(_("data-v-b9160aaa"),e=e(),c(),e),d={class:"footer"},p=n(()=>a("div",{class:"footer-content"},[a("p",null,"© 2023 Taealam. All rights reserved.")],-1)),l=[p];function i(e,f){return s(),t("footer",d,l)}const m=o(r,[["render",i],["__scopeId","data-v-b9160aaa"]]);export{m as F};
