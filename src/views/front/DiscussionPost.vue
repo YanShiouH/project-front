@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="h-100">
     <v-row class="max-width-1080">
       <v-col cols="12">
         Poster: {{ posts.account }}<br>
@@ -21,12 +21,13 @@
           comment.</p>
       </v-col>
       <v-col cols="12" v-for="(comment, index) in comments" :key="comment._id" data-aos="fade-down"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+        data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <CommentCard v-bind="comment"></CommentCard>
       </v-col>
     </v-row>
     <BtnBack></BtnBack>
   </v-container>
+  <Footer></Footer>
 </template>
 
 <script setup>
@@ -37,6 +38,7 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import CommentCard from '@/components/CommentCard.vue'
+import Footer from '@/components/footeR.vue'
 import BtnBack from '@/components/BackButton.vue'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'

@@ -1,13 +1,13 @@
 <template>
-  <v-container>
+  <v-container class="h-100">
     <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Courses</h1>
       </v-col>
       <!-- <v-divider></v-divider> -->
       <v-col cols="12" sm="6" lg="4" v-for="(course, index) in sliced" :key="course._id" data-aos="fade-down"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
-        <CourseCard v-bind="course"></CourseCard>
+        data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+        <CourseCard v-bind="course" class="py-6"></CourseCard>
       </v-col>
       <v-col cols="12">
         <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
@@ -56,7 +56,7 @@ const sliced = computed(() => {
 
 const totalPages = computed(() => Math.ceil(courses.value.length / pageSize.value))
 const calculateDelay = (index) => {
-  return index * 200
+  return index * 50
 }
 
 </script>

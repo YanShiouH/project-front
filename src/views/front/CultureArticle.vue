@@ -1,13 +1,11 @@
 <template>
+  <section class="text-center">
+    <h1>{{ culture.title }}</h1>
+    <v-img :src="culture.image" class="image"></v-img>
+  </section>
   <v-container>
     <v-row class="max-width-1080">
-      <v-col cols="12" class="text-center">
-        <h1>{{ culture.title }}</h1>
-      </v-col>
-      <v-col cols="12">
-        <v-img :src="culture.image" :aspect-ratio="16 / 9"></v-img>
-      </v-col>
-      <v-col cols="12">
+      <v-col cols="12" class="content">
         <div v-html="formattedContent"></div>
       </v-col>
     </v-row>
@@ -71,3 +69,22 @@ const formattedContent = computed(() => {
   return processedContent
 })
 </script>
+<style lang="sass" scope>
+h1
+  font-size: 3rem
+.image
+  max-width:1424px
+  margin: auto
+.content
+  background-color: white
+  box-shadow: 0px 0px 50px rgba(0,0,0,0.1)
+
+@media (min-width: 600px)
+  .content
+    position: relative
+    top:-100px
+    padding: 40px
+@media (min-width: 960px)
+  .content
+    padding: 70px
+</style>

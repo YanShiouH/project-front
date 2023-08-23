@@ -1,24 +1,21 @@
 <template>
-  <!-- <v-parallax src="../../assets/mosque.jpg" :height="600" :scroll-threshold="0.5" elevation="2"></v-parallax> -->
-  <!-- <section class="image-section">
-    <img src="../../assets/mosque.jpg" alt="Responsive Image">
-  </section> -->
-  <v-container>
-    <v-row class="max-width-1080">
-      <v-col cols="12">
-        <h1 class="text-center">Culture Corner</h1>
-      </v-col>
-      <!-- <v-divider></v-divider> -->
-      <v-col cols="12" sm="6" lg="4" v-for="(cultureItem, index) in sliced" :key="cultureItem._id" data-aos="zoom-out"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
-        <CultureCard v-bind="cultureItem" class="culture-card"></CultureCard>
-      </v-col>
-      <v-col cols="12">
-        <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
-      </v-col>
-    </v-row>
-  </v-container>
-  <Footer></Footer>
+  <div class="background">
+    <v-container class="h-100">
+      <v-row class="max-width-1080">
+        <v-col cols="12">
+          <h1 class="text-center">Culture Corner</h1>
+        </v-col>
+        <v-col cols="12" sm="6" lg="4" v-for="(cultureItem, index) in sliced" :key="cultureItem._id" data-aos="zoom-out"
+          data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+          <CultureCard v-bind="cultureItem" class="culture-card"></CultureCard>
+        </v-col>
+        <v-col cols="12">
+          <v-pagination v-model="currentPage" :length="totalPages" size="20"></v-pagination>
+        </v-col>
+      </v-row>
+    </v-container>
+    <Footer></Footer>
+  </div>
 </template>
 
 <script setup>
@@ -47,11 +44,11 @@ onMounted(async () => {
     })
     document.querySelectorAll('.culture-card').forEach((card, index) => {
       const tween = gsap.to(card, {
-        y: -30,
+        y: -20,
         boxShadow: '0 30px 30px rgba(0,0,0,0.2)',
         paused: true,
-        duration: 0.5,
-        ease: 'back.inOut(5)'
+        duration: 0.2,
+        ease: 'none'
       })
 
       card.addEventListener('mouseenter', () => tween.play())
@@ -80,6 +77,10 @@ const sliced = computed(() => {
 
 const totalPages = computed(() => Math.ceil(culture.value.length / pageSize.value))
 const calculateDelay = (index) => {
-  return index * 200
+  return index * 50
 }
 </script>
+<style lang="sass" scope>
+h1
+  font-size: 3rem
+</style>

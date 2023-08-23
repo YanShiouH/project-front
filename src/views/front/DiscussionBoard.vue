@@ -1,6 +1,5 @@
 <template>
-  <!-- <v-parallax src="../../assets/mosque.jpg" :height="600" :scroll-threshold="0.5" elevation="2"></v-parallax> -->
-  <v-container>
+  <v-container class="h-100">
     <v-row class="max-width-1080">
       <v-col cols="12">
         <h1 class="text-center">Discussion Board</h1>
@@ -21,7 +20,7 @@
         </v-btn-toggle>
       </v-col>
       <v-col cols="12" v-for="(post, index) in filteredSlicedItems" :key="post._id" data-aos="fade-down"
-        data-aos-duration="1200" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
+        data-aos-duration="600" :data-aos-delay="calculateDelay(index)" data-aos-offset="-100">
         <PostCard v-bind="post"></PostCard>
       </v-col>
       <v-col cols="12">
@@ -29,6 +28,7 @@
       </v-col>
     </v-row>
   </v-container>
+  <Footer></Footer>
   <v-dialog persistent v-model="dialog" width="500px">
     <v-form :disabled="isSubmitting" @submit.prevent="submit">
       <v-card>
@@ -56,6 +56,7 @@ import * as yup from 'yup'
 import { apiAuth, api } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
 import PostCard from '@/components/PostCard.vue'
+import Footer from '@/components/footeR.vue'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
 import AOS from 'aos'
@@ -148,7 +149,7 @@ const submit = handleSubmit(async (values) => {
 })
 
 const calculateDelay = (index) => {
-  return index * 200
+  return index * 50
 }
 const searchQuery = ref('')
 const filter = ref('')
@@ -188,4 +189,6 @@ const filteredSlicedItems = computed(() => {
 <style lang="sass" scope>
 .v-field__append-inner
   cursor: pointer
+h1
+  font-size:3rem
 </style>
