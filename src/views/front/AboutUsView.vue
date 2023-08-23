@@ -37,8 +37,8 @@
           <v-textarea label="Message" name="message" v-model="message.value.value"
             :error-messages="message.errorMessage.value"></v-textarea>
           <v-col col="12" class="d-flex justify-end">
-            <v-btn variant="text" color="error" @click="handleReset">Reset</v-btn>
-            <v-btn variant="elevated" type="submit" color="primary">Submit</v-btn></v-col>
+            <v-btn variant="text" color="error" @click="handleReset" :loading="isSubmitting">Reset</v-btn>
+            <v-btn variant="elevated" type="submit" color="primary" :loading="isSubmitting">Submit</v-btn></v-col>
         </v-form>
       </v-col>
     </v-row>

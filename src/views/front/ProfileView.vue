@@ -48,7 +48,8 @@
               <v-text-field density="compact" type="password" v-model="confirmPassword.value.value"
                 :error-messages="confirmPassword.errorMessage.value" label="Confirm new password" variant="outlined"
                 class="info-input" color="primary"></v-text-field>
-              <v-btn color="primary" type="submit" rounded width="300" variant="tonal">Update</v-btn>
+              <v-btn color="primary" type="submit" rounded width="300" variant="tonal"
+                :loading="isSubmitting">Update</v-btn>
             </v-col>
           </v-form>
         </v-row>
@@ -94,8 +95,8 @@
             :error-text="{ type: 'Invalid file format', size: 'File is too large' }" deletable
             ref="fileAgent"></vue-file-agent></v-card-text>
         <v-card-actions class="d-flex justify-center">
-          <v-btn color="error" @click="closeDialog">Cancel</v-btn>
-          <v-btn color="primary" type="submit" variant="elevated">Submit</v-btn>
+          <v-btn color="error" @click="closeDialog" :loading="loading">Cancel</v-btn>
+          <v-btn color="primary" type="submit" variant="elevated" :loading="loading">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
@@ -186,6 +187,7 @@ const files = ref([])
 const rawFiles = ref([])
 const fileAgent = ref(null)
 const upload = async () => {
+  loading.value = true
   if (files.value.length === 0) return
   try {
     const formData = new FormData()
@@ -214,7 +216,9 @@ const upload = async () => {
       }
     })
   }
+  loading.value = false
 }
+const loading = ref(false)
 </script>
 
 <style scoped lang="sass" src="../../assets/pages/_profile.sass">

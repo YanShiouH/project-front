@@ -12,7 +12,7 @@
           <v-text-field v-model="password.value.value" :error-messages="password.errorMessage.value" label="Password"
             counter maxlength="20" type="password"></v-text-field>
           <div class="text-center">
-            <v-btn type="submit" color="primary">Log In</v-btn>
+            <v-btn type="submit" color="primary" :loading="isSubmitting">Log In</v-btn>
           </div>
         </v-form>
       </v-col>

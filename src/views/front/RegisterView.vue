@@ -16,7 +16,7 @@
           <v-text-field v-model="passwordConfirm.value.value" :error-messages="passwordConfirm.errorMessage.value"
             label="Confirm Password" counter max-length="20" type="password"></v-text-field>
           <div class="text-center">
-            <v-btn type="submit" color="primary" text-center>Sign Up</v-btn>
+            <v-btn type="submit" color="primary" text-center :loading="isSubmitting">Sign Up</v-btn>
           </div>
         </v-form>
       </v-col>
