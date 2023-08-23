@@ -122,6 +122,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { VuePreloader } from 'vue-preloader'
 import '../../../node_modules/vue-preloader/dist/style.css'
+import '../../assets/components/_vuePreloader.sass'
 import Footer from '@/components/footeR.vue'
 const showAnimation = ref(true)
 onMounted(() => {
