@@ -63,7 +63,8 @@ const submit = handleSubmit(async (values) => {
       account: data.result.account,
       email: data.result.email,
       profile: data.result.profile,
-      role: data.result.role
+      role: data.result.role,
+      image: data.result.image
     })
     // createSnackbar({
     //   text: 'Login successful',
