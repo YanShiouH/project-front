@@ -60,3 +60,7 @@ const calculateDelay = (index) => {
   return index * 50
 }
 </script>
+<style lang="sass" scoped>
+h1
+  font-size:3rem
+</style>
