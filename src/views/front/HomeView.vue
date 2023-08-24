@@ -1,6 +1,6 @@
 <template>
   <vue-preloader @loading-is-over="showAnimation = false" :overflowActive="false" transition-type="fade-up"
-    background-color="#fff" color="#FF6F61">
+    background-color="#fff" color="#FF6F61" style="width: 100vw;">
     <template v-slot="{ color, percent }">
       <transition name="loading-animation" mode="in-out">
         <div style="width: 30%;">
