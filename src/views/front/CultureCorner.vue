@@ -83,9 +83,8 @@ const calculateDelay = (index) => {
 <style lang="sass" scoped>
 h1
   font-size: 3rem
-
-  .v-row
+.v-row
     margin: 0 !important
-  .v-col
+.v-col
     margin: 0 !important
 </style>
