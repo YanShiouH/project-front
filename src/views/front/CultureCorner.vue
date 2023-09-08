@@ -85,4 +85,6 @@ h1
   font-size: 3rem
 .v-col
   margin: 0 !important
+.v-row
+  margin: auto
 </style>
