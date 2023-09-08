@@ -84,7 +84,7 @@ const calculateDelay = (index) => {
 h1
   font-size: 3rem
 .v-row
-    margin: 0 !important
+  margin: 0 !important
 .v-col
-    margin: 0 !important
+  margin: 0 !important
 </style>
