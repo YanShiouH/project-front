@@ -110,7 +110,7 @@ const routes = [
       {
         path: 'aboutus',
         name: 'About Us',
-        component: () => import(/* webpackChunkName: "aboutus" */ '@/views/front/AboutUsView.vue'),
+        component: () => import(/* webpackChunkName: "aboutUs" */ '@/views/front/AboutUsView.vue'),
         meta: {
           title: 'Taealam | About Us',
           login: false,
@@ -159,6 +159,16 @@ const routes = [
         component: () => import(/* webpackChunkName: "admin-discussionBoard" */ '@/views/admin/DiscussionBoard.vue'),
         meta: {
           title: 'Taealam | Discussion Board',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'user',
+        name: 'AdminUserManagement',
+        component: () => import(/* webpackChunkName: "admin-userManagement" */ '@/views/admin/UserManagement.vue'),
+        meta: {
+          title: 'Taealam | User Management',
           login: true,
           admin: true
         }
