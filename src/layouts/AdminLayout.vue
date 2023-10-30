@@ -1,7 +1,7 @@
 <template>
   <v-navigation-drawer permanent="">
     <v-list>
-      <v-list-item :prepend-avatar="avatar" :title="account"></v-list-item>
+      <v-list-item :prepend-avatar="user.image === undefined ? avatar : user.image" :title="account"></v-list-item>
     </v-list>
     <v-divider></v-divider>
     <v-list>

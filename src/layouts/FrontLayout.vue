@@ -87,7 +87,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed } from 'vue'
 import { useDisplay } from 'vuetify'
 import { useUserStore } from '@/store/user'
 import { storeToRefs } from 'pinia'
@@ -95,12 +95,6 @@ import { apiAuth } from '@/plugins/axios'
 import { useSnackbar } from 'vuetify-use-dialog'
 import router from '@/router'
 
-const showAnimation = ref(true)
-onMounted(() => {
-  setTimeout(() => {
-    showAnimation.value = false
-  }, 3000)
-})
 const createSnackbar = useSnackbar()
 const user = useUserStore()
 
