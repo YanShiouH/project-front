@@ -1,5 +1,5 @@
 <template>
-  <v-navigation-drawer v-if="isMobile" v-model="drawer" location="left" temporary>
+  <v-navigation-drawer v-if="isMobile" v-model="drawer" location="right" temporary>
     <v-list nav>
       <v-btn variant="text" class="v-btn__content" :to="isLogin ? '/profile' : '/login'">
         <v-avatar><v-img :src="!isLogin ? avatar : user.image === undefined ? avatar : user.image"
